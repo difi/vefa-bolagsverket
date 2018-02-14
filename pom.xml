@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>no.difi.bolagsverket</groupId>
+    <artifactId>client</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>client</name>
+    <description>Bolagsverket client</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.10.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <cobertura.plugin.version>2.7</cobertura.plugin.version>
+        <maven-jaxb2-plugin-version>0.13.3</maven-jaxb2-plugin-version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-support</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>${maven-jaxb2-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-from-wsdl</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaLanguage>WSDL</schemaLanguage>
+                            <schemaDirectory>${basedir}/src/main/resources/wsdl</schemaDirectory>
+                            <schemaIncludes>
+                                <include>*.wsdl</include>
+                            </schemaIncludes>
+                            <generatePackage>no.difi.bolagsverket.xml</generatePackage>
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc-wsdl</generateDirectory>
+                            <removeOldOutput>true</removeOldOutput>
+                            <!--<args>-->
+                            <!--<arg>-Xfluent-builder</arg>-->
+                            <!--<arg>-Xannotate</arg>-->
+                            <!--</args>-->
+                            <!--<plugins>-->
+                            <!--<plugin>-->
+                            <!--<groupId>net.codesup.util</groupId>-->
+                            <!--<artifactId>jaxb2-rich-contract-plugin</artifactId>-->
+                            <!--<version>1.17.0</version>-->
+                            <!--</plugin>-->
+                            <!--<plugin>-->
+                            <!--<groupId>org.jvnet.jaxb2_commons</groupId>-->
+                            <!--<artifactId>jaxb2-basics-annotate</artifactId>-->
+                            <!--<version>1.0.2</version>-->
+                            <!--</plugin>-->
+                            <!--</plugins>-->
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-from-xsd</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaLanguage>XMLSCHEMA</schemaLanguage>
+                            <schemaDirectory>${basedir}/src/main/resources/xsd/foretagsinformation</schemaDirectory>
+                            <generatePackage>no.difi.bolagsverket.schema</generatePackage>
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc-xsd</generateDirectory>
+                            <removeOldOutput>true</removeOldOutput>
+                            <!--<args>-->
+                            <!--<arg>-Xfluent-builder</arg>-->
+                            <!--<arg>-Xannotate</arg>-->
+                            <!--</args>-->
+                            <!--<plugins>-->
+                            <!--<plugin>-->
+                            <!--<groupId>net.codesup.util</groupId>-->
+                            <!--<artifactId>jaxb2-rich-contract-plugin</artifactId>-->
+                            <!--<version>1.17.0</version>-->
+                            <!--</plugin>-->
+                            <!--<plugin>-->
+                            <!--<groupId>org.jvnet.jaxb2_commons</groupId>-->
+                            <!--<artifactId>jaxb2-basics-annotate</artifactId>-->
+                            <!--<version>1.0.2</version>-->
+                            <!--</plugin>-->
+                            <!--</plugins>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
