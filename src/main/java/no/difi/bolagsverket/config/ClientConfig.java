@@ -1,5 +1,7 @@
 package no.difi.bolagsverket.config;
 
+import no.difi.bolagsverket.request.Base64RequestProviderImpl;
+import no.difi.bolagsverket.request.RequestProvider;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +11,11 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 @Configuration
 @EnableConfigurationProperties(ClientProperties.class)
 public class ClientConfig {
+
+    @Bean
+    public RequestProvider requestProvider() {
+        return new Base64RequestProviderImpl();
+    }
 
     @Bean
     public Jaxb2Marshaller marshaller() {
