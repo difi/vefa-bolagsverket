@@ -1,6 +1,7 @@
 package no.difi.bolagsverket.client;
 
 import no.difi.bolagsverket.config.ClientProperties;
+import no.difi.bolagsverket.request.RequestProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -15,14 +16,21 @@ public class BolagsverketClientTest {
     private WebServiceTemplate templateMock;
     @Mock
     private ClientProperties propertiesMock;
+    @Mock
+    private RequestProvider requestProviderMock;
 
     @Test(expected = NullPointerException.class)
     public void testConstructor_propertiesIsNull_shouldThrow() {
-        target = new BolagsverketClient(null, templateMock);
+        target = new BolagsverketClient(null, templateMock, requestProviderMock);
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructor_templateIsNull_shouldThrow() {
-        target = new BolagsverketClient(propertiesMock, null);
+        target = new BolagsverketClient(propertiesMock, null, requestProviderMock);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testConstructor_requestProviderIsNull_shouldThrow() {
+        target = new BolagsverketClient(propertiesMock, templateMock, null);
     }
 }
