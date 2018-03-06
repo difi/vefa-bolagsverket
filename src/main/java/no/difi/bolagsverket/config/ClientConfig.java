@@ -1,18 +1,14 @@
 package no.difi.bolagsverket.config;
 
-import no.difi.bolagsverket.client.BolagsverketClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.ws.client.core.WebServiceTemplate;
 
 @Configuration
 @EnableConfigurationProperties(ClientProperties.class)
 public class ClientConfig {
-
-    @Autowired
-    private ClientProperties properties;
 
     @Bean
     public Jaxb2Marshaller marshaller() {
@@ -22,12 +18,13 @@ public class ClientConfig {
     }
 
     @Bean
-    public BolagsverketClient bolagsverketClient(ClientProperties properties, Jaxb2Marshaller marshaller) {
-        BolagsverketClient client = new BolagsverketClient();
-        client.setDefaultUri(properties.getServiceEndpoint().toString());
-        client.setMarshaller(marshaller);
+    public WebServiceTemplate bolagsverketClient(ClientProperties properties, Jaxb2Marshaller marshaller) {
+        WebServiceTemplate template = new WebServiceTemplate();
+        template.setDefaultUri(properties.getServiceEndpoint().toString());
+        template.setMarshaller(marshaller);
+        template.setUnmarshaller(marshaller);
 
-        return client;
+        return template;
     }
 
 }
