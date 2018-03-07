@@ -6,7 +6,6 @@ import no.difi.bolagsverket.request.RequestProvider;
 import no.difi.bolagsverket.xml.GetProdukt;
 import no.difi.bolagsverket.xml.GetProduktResponse;
 import org.springframework.ws.client.core.WebServiceTemplate;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Objects;
 
@@ -23,14 +22,18 @@ public class BolagsverketClient {
         this.requestProvider = Objects.requireNonNull(requestProvider);
     }
 
-    public GetProduktResponse getProdukt(String organizationNumber) {
+    public GetProduktResponse getProdukt(String organizationNumber) throws ClientException {
+        Objects.requireNonNull(organizationNumber);
         GetProdukt request = new GetProdukt();
         request.setCertId(properties.getCertId());
         request.setUserId(properties.getUserId());
-//        request.setXmlFraga(organizationNumber);
+        String xmlQuery = requestProvider.getRequest(organizationNumber);
+        if (null == xmlQuery) {
+            throw new ClientException("Request generation failed.");
+        }
+        request.setXmlFraga(xmlQuery);
         log.info("Getting response.");
-//        return (GetProduktResponse) template.marshalSendAndReceive(request);
-        throw new NotImplementedException();
+        return (GetProduktResponse) template.marshalSendAndReceive(request);
     }
 
 }
