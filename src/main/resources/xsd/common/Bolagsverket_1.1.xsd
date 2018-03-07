@@ -1,0 +1,2151 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Mattias Thorsell (Bolagsverket) -->
+<!-- 2005-10-13 Bolagsverket_1.0.xsd Version 1.0  -->
+<!-- 2006-10-02 Bolagsverket_1.1.xsd Version 1.0, anpassning, placering i publik namnrymd  -->
+<xs:schema xmlns="http://www.bolagsverket.se/schemas/common" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.bolagsverket.se/schemas/common" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="KompletteringsType">
+		<xs:sequence>
+			<xs:element name="Text" type="xs:string" minOccurs="0"/>
+			<xs:element name="NamnForslag" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="nummer" type="xs:positiveInteger" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RubriceringsType">
+		<xs:simpleContent>
+			<xs:extension base="RubriceringsTextType"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="RubriceringsTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Bifirma hävd genom dom"/>
+			<xs:enumeration value="Firma hävd genom dom"/>
+			<xs:enumeration value="Parallellfirma hävd genom dom"/>
+			<xs:enumeration value="Ackordsförhandling"/>
+			<xs:enumeration value="Ackordsförhandling upphävd"/>
+			<xs:enumeration value="Ackordsförhandling upphörd"/>
+			<xs:enumeration value="Likvidationsföreläggande pga övergångsbestämmelser angående ökning av aktiekapital"/>
+			<xs:enumeration value="Kapitalgränser"/>
+			<xs:enumeration value="Omvandling av aktier"/>
+			<xs:enumeration value="Entledigande och förordnande av likvidator"/>
+			<xs:enumeration value="Entledigande och förordnande av likvidator på annan ansökan"/>
+			<xs:enumeration value="Anmälan"/>
+			<xs:enumeration value="Avförd enligt SFS 1981:460 eller enligt 13:18 ABL"/>
+			<xs:enumeration value="Avslag/Avregistrering av företrädare pga felaktig anmälan om registrering"/>
+			<xs:enumeration value="Avförande av bolag enligt lag (1994:802) om ändring av ABL 1975:1385)"/>
+			<xs:enumeration value="Avförd pga flyttning till län som ännu ej övertagits av Bolagsverket"/>
+			<xs:enumeration value="Företaget avfört"/>
+			<xs:enumeration value="Inkommen avgift"/>
+			<xs:enumeration value="Avregistrerad efter anmälan om att verksamheten har upphört"/>
+			<xs:enumeration value="Avregistrerad pga flyttning till nytt län"/>
+			<xs:enumeration value="Avregistrerad pga ny innehavare"/>
+			<xs:enumeration value="Avslutad"/>
+			<xs:enumeration value="Avslag på sökt firmaförslag"/>
+			<xs:enumeration value="Avtal godkända av bolagsstämma"/>
+			<xs:enumeration value="Bemyndigande om ökning av aktiekapitalet genom nyemission"/>
+			<xs:enumeration value="Bemyndigande om ökning av aktiekapitalet genom utgivande av skuldebrev"/>
+			<xs:enumeration value="Fusion inledd mellan moderbolag och helägt dotterbolag"/>
+			<xs:enumeration value="Bifirma registrering/ändring av verksamhet"/>
+			<xs:enumeration value="Upphävande av bifirma"/>
+			<xs:enumeration value="Nedsättning av insatser"/>
+			<xs:enumeration value="Likvidationsföreläggande pga särskild delgivningsmottagare saknas"/>
+			<xs:enumeration value="Likvidationsföreläggande pga särskild delgivningsmottager saknas, annan ansökan"/>
+			<xs:enumeration value="Eget utträde för delgivningsmottagare"/>
+			<xs:enumeration value="Registrering av särskild delgivningsmottagare"/>
+			<xs:enumeration value="Ändring av postadress för särskild delgivningsmottagare"/>
+			<xs:enumeration value="Eget utträde för särskild delgivningsmottagare"/>
+			<xs:enumeration value="Ändring av postadress för särskild delgivningsmottagare"/>
+			<xs:enumeration value="Inkommen delårsrapport för ytterligare en period"/>
+			<xs:enumeration value="Inkommen delårsrapport"/>
+			<xs:enumeration value="Inkommen ansökan om eftergift"/>
+			<xs:enumeration value="Beslut att intaga (ändra) förbehåll enligt 17:1 skall förfalla"/>
+			<xs:enumeration value="Registrering av ekonomisk plan"/>
+			<xs:enumeration value="Handling inkommen via fax"/>
+			<xs:enumeration value="Felupplagt ärende"/>
+			<xs:enumeration value="Ändring av firma"/>
+			<xs:enumeration value="Fortsatt bolagsstämma"/>
+			<xs:enumeration value="Fortsätter"/>
+			<xs:enumeration value="Frivillig"/>
+			<xs:enumeration value="Fusionsärende"/>
+			<xs:enumeration value="Registrering av anmälan om genomförd fusion"/>
+			<xs:enumeration value="Registrering av tillstånd eller ansökan om tillstånd att verkställa fusionsplan"/>
+			<xs:enumeration value="Registrering av fusionsavtal"/>
+			<xs:enumeration value="Beslut om godkännande av fusionsavtal"/>
+			<xs:enumeration value="Registrering av förfallen fusion"/>
+			<xs:enumeration value="Registrering att kallelse av borgenärer utfärdats vid fusion"/>
+			<xs:enumeration value="Registrering att tillståndsärende i fusion överlämnats till rätten"/>
+			<xs:enumeration value="Registrering av fusionsplan"/>
+			<xs:enumeration value="Registrering av anmälan om genomförd fusion"/>
+			<xs:enumeration value="Registrering av fusion förfallen"/>
+			<xs:enumeration value="Registrering av tillstånd att verkställa fusion"/>
+			<xs:enumeration value="Registrering av verkställd fusion"/>
+			<xs:enumeration value="Registrering av tillstånd att verkställa fusion"/>
+			<xs:enumeration value="Ansökan om tillstånd att verkställa fusion"/>
+			<xs:enumeration value="Registrering av verkställd fusion"/>
+			<xs:enumeration value="Registrering att fusionen förklarats vilande"/>
+			<xs:enumeration value="Registrering av återgång av fusion"/>
+			<xs:enumeration value="Registrering av fusion på övertagande bolag"/>
+			<xs:enumeration value="Ändring av företrädare/firmateckning"/>
+			<xs:enumeration value="Avregistrering av företrädare pga felaktig anmälan om registrering"/>
+			<xs:enumeration value="Ändring av företrädarnas företrädare"/>
+			<xs:enumeration value="Ändring av styrelsegränser"/>
+			<xs:enumeration value="Registrering av företrädare pga felaktig anmälan om avregistrering"/>
+			<xs:enumeration value="Ändring av företrädares postadress"/>
+			<xs:enumeration value="Eget utträde för företrädare"/>
+			<xs:enumeration value="Garantikapital"/>
+			<xs:enumeration value="Registrering av styrelsegränser då uppgift saknades eller var felaktigt vid konvetering"/>
+			<xs:enumeration value="Registrering av säte då uppgift saknades vid övertagandet av länsstyrelsens register"/>
+			<xs:enumeration value="Registrering av företrädare pga felaktig anmälan om avregistrering"/>
+			<xs:enumeration value="Kallelse"/>
+			<xs:enumeration value="Omräkning av aktiekapitalgränser"/>
+			<xs:enumeration value="Konkurs"/>
+			<xs:enumeration value="Konkurs avslutad med överskott"/>
+			<xs:enumeration value="Konkurs avslutad utan överskott"/>
+			<xs:enumeration value="Konkurs fortsätter"/>
+			<xs:enumeration value="Registrering/ändring av konkursförvaltare eller ändring av tillsynsmyndighet"/>
+			<xs:enumeration value="Konkurs upphävd"/>
+			<xs:enumeration value="Ny koncession"/>
+			<xs:enumeration value="Koncession förverkad"/>
+			<xs:enumeration value="Maskinell konvertering av objekt till Bolagsverkets datasystem"/>
+			<xs:enumeration value="Manuell konvertering av objekt inom Bolagsverkets datasystem"/>
+			<xs:enumeration value="Likvidationsföreläggande pga konkurs avslutad med överskott"/>
+			<xs:enumeration value="Likvidationsföreläggande pga konkurs avslutad med överskott, annan ansökan"/>
+			<xs:enumeration value="Firmaskydd för lagerbolag"/>
+			<xs:enumeration value="Likvidationsanmälan till tingsrätt med anledning av vakans i styrelsen"/>
+			<xs:enumeration value="Likvidation beslutad"/>
+			<xs:enumeration value="Likvidationsanmälan till tingsrätt pga att årsredovisning ej insänts"/>
+			<xs:enumeration value="Likvidation avslutad"/>
+			<xs:enumeration value="Likvidation fortsätter"/>
+			<xs:enumeration value="Kallelse på okända borgenärer för bolag i likvidation"/>
+			<xs:enumeration value="Kallelse på okända borgenärer överklagat"/>
+			<xs:enumeration value="Likvidation/ändring/förordnande av likvidatorer"/>
+			<xs:enumeration value="Ändring av likvidators postadress"/>
+			<xs:enumeration value="Eget utträde för likvidator"/>
+			<xs:enumeration value="Pågående likvidationsärende hos tingsrätt"/>
+			<xs:enumeration value="Likvidation upphävd"/>
+			<xs:enumeration value="Likvidation upphör och verksamheten återupptages"/>
+			<xs:enumeration value="Likvidationsbeslut överklagat"/>
+			<xs:enumeration value="Beslut om utseende av likvidator överklagat"/>
+			<xs:enumeration value="Länsstyrelsen för utseende av kvalificerad revisor"/>
+			<xs:enumeration value="Ändring av företrädares och/eller revisors postadress i flera bolag"/>
+			<xs:enumeration value="Revisors uppdrag upphör i förtid i flera bolag"/>
+			<xs:enumeration value="Eget utträde för revisor ur flera bolag"/>
+			<xs:enumeration value="Nedsättning av aktiekapital"/>
+			<xs:enumeration value="Ökning av aktiekapital pga förfallen minskning"/>
+			<xs:enumeration value="Tillstånd till minskning av aktiekapitalet"/>
+			<xs:enumeration value="Nybildning"/>
+			<xs:enumeration value="Okända borgenärer för bolag i likvidation"/>
+			<xs:enumeration value="Ombildning till bankaktiebolag"/>
+			<xs:enumeration value="Ombildning till bankaktiebolag förfallen"/>
+			<xs:enumeration value="Tillstånd till ombildning till bankaktiebolag"/>
+			<xs:enumeration value="Verkställighet av ombildning till bankaktiebolag"/>
+			<xs:enumeration value="Inkommen ansökan om omprövning"/>
+			<xs:enumeration value="Omräkning av aktiekapital/grundfond/garantikapital till tidigare beslutad valuta"/>
+			<xs:enumeration value="Ändring av bolagsordning"/>
+			<xs:enumeration value="Likvidationsföreläggande pga obehörig styrelse"/>
+			<xs:enumeration value="Likvidationsföreläggande pga obehörig styrelse, annan ansökan"/>
+			<xs:enumeration value="Ändring av objektets postadress"/>
+			<xs:enumeration value="Parallellfirma registrering/ändring"/>
+			<xs:enumeration value="Upphävande av parallellfirma"/>
+			<xs:enumeration value="Period på inkommen handling stämmer ej med registrerad period"/>
+			<xs:enumeration value="Protest"/>
+			<xs:enumeration value="Inkommen protest för företaget"/>
+			<xs:enumeration value="Kategoribyte från publikt till privat bolag"/>
+			<xs:enumeration value="Protokoll som ej avser ingivet registreringsärende"/>
+			<xs:enumeration value="Ändringsåtgärd Bolagsverket"/>
+			<xs:enumeration value="Bolagsverket efterger beslut"/>
+			<xs:enumeration value="Ändring av företrädare pga avisering från myndighet"/>
+			<xs:enumeration value="Ändring av företrädare p g a personlig konkurs"/>
+			<xs:enumeration value="Åtgärd av Bolagsverket på grund av personlig konkurs"/>
+			<xs:enumeration value="Registrering av likvidationsbeslut innan formell ändringsanmälan inkommit"/>
+			<xs:enumeration value="Åtgärd av Bolagsverket på grund av näringsförbud"/>
+			<xs:enumeration value="Ändring av företrädare/revisorer pga näringsförbud"/>
+			<xs:enumeration value="Bolagsverket omprövar beslut"/>
+			<xs:enumeration value="Ändring av företrädare/revisor pga avisering från myndighet"/>
+			<xs:enumeration value="Ändring av företrädare/revisorer pga personlig konkurs"/>
+			<xs:enumeration value="Ändring av revisor på initiativ av Bolagsverket eller pga avisering från myndighet"/>
+			<xs:enumeration value="Ändring av revisorer p g a personlig konkurs"/>
+			<xs:enumeration value="Ändring av revisor pga näringsförbud"/>
+			<xs:enumeration value="Publikt bolag/byte privat till publikt bolag"/>
+			<xs:enumeration value="Likvidationsföreläggande pga behörig revisor saknas"/>
+			<xs:enumeration value="Likvidationsföreläggande pga behörig revisor saknas, annan sökande"/>
+			<xs:enumeration value="Revisors uppdrag upphör i förtid i flera bolag"/>
+			<xs:enumeration value="Ändring av reglemente"/>
+			<xs:enumeration value="Ändring av registreringslän"/>
+			<xs:enumeration value="Övriga registeruppgifter"/>
+			<xs:enumeration value="Företagsrekonstruktion"/>
+			<xs:enumeration value="Företagsrekonstruktion upphävd av rätt"/>
+			<xs:enumeration value="Företagsrekonstruktion upphörd"/>
+			<xs:enumeration value="Handling som ej avser ingivet registreringsärende"/>
+			<xs:enumeration value="Ändring av revisor(er)"/>
+			<xs:enumeration value="Eget utträde för revisor ur flera bolag"/>
+			<xs:enumeration value="Inkommen revisorsbekräftelse"/>
+			<xs:enumeration value="Eget utträde för revisor"/>
+			<xs:enumeration value="Revisors uppdrag upphör i förtid"/>
+			<xs:enumeration value="Ändring av postadress för revisor"/>
+			<xs:enumeration value="Eget utträde för revisor"/>
+			<xs:enumeration value="Rättens tillstånd till fusion"/>
+			<xs:enumeration value="Ändring av revisors postadress i flera bolag"/>
+			<xs:enumeration value="Ändring av räkenskapsår"/>
+			<xs:enumeration value="Inkommen årsredovisning"/>
+			<xs:enumeration value="Inkommen årsredovisning för utländskt bolag"/>
+			<xs:enumeration value="Utgivande eller ändring av skuldebrev"/>
+			<xs:enumeration value="Registrering av skyddslän då Bolagsverket ännu ej övertagit registreringslänet"/>
+			<xs:enumeration value="Ändring av företrädares postadresser i flera bolag"/>
+			<xs:enumeration value="Skyddsregistrering av firma i annat län än registreringslänet"/>
+			<xs:enumeration value="Skyddsregistrering upphör"/>
+			<xs:enumeration value="Ändring av företrädare/firmateckning"/>
+			<xs:enumeration value="Ändring av stadgar"/>
+			<xs:enumeration value="Eget utträde för företrädare"/>
+			<xs:enumeration value="Ändring av styrelsens gränser"/>
+			<xs:enumeration value="Firmaskydd för näringsdrivande stiftelse som övertagits av länsstyrelsen"/>
+			<xs:enumeration value="Ändring av företrädares postadress"/>
+			<xs:enumeration value="Ändring av säte"/>
+			<xs:enumeration value="Tillstånd"/>
+			<xs:enumeration value="Återkallande av tillstånd"/>
+			<xs:enumeration value="Tillstånd till finansieringsverksamhet"/>
+			<xs:enumeration value="Återställande av säkerhet"/>
+			<xs:enumeration value="Återkallande av tillstånd att bedriva bankrörelse"/>
+			<xs:enumeration value="Ändring av objekttyp från BF till BRF"/>
+			<xs:enumeration value="Ändring av objekttyp från KB till HB"/>
+			<xs:enumeration value="Ändring av objekttyp från HB till KB"/>
+			<xs:enumeration value="Utbyte av handlingar"/>
+			<xs:enumeration value="Upphör och verksamheten återupptas"/>
+			<xs:enumeration value="Upphävd av rätt"/>
+			<xs:enumeration value="Upphörd"/>
+			<xs:enumeration value="Registrering av ärende utan avgift"/>
+			<xs:enumeration value="Upphävd"/>
+			<xs:enumeration value="Pågående hos tingsrätt"/>
+			<xs:enumeration value="Extra utdelning"/>
+			<xs:enumeration value="Ändring av uppgifter ang det utländska bolaget"/>
+			<xs:enumeration value="Verkställighet av beslut att i intaga förbehåll enligt 17:1"/>
+			<xs:enumeration value="Beslut om ny valuta"/>
+			<xs:enumeration value="Likvidationsföreläggande pga VD saknas"/>
+			<xs:enumeration value="Likvidationsföreläggande pga VD saknas, annan sökande"/>
+			<xs:enumeration value="Ändring av verksamhet"/>
+			<xs:enumeration value="Vitesföreläggande/Vite pga att ofullständig eller ej inlämnad årsredovisning"/>
+			<xs:enumeration value="Elektronisk handling"/>
+			<xs:enumeration value="Likvidationsföreläggande pga årsredovisning saknas"/>
+			<xs:enumeration value="Likvidationsföreläggande pga årsredovisning saknas, annan ansökan"/>
+			<xs:enumeration value="Inkommen slutredovisning"/>
+			<xs:enumeration value="Inkommen årsredovisning"/>
+			<xs:enumeration value="Ökning av aktiekapitalet"/>
+			<xs:enumeration value="Fullbetalning av registrerad ej tillfullo betald nyemission"/>
+			<xs:enumeration value="Ökning av aktiekapitalet genom fondemission"/>
+			<xs:enumeration value="Minskning av aktiekapitalet pga bristande betalning för tidigare anmäld aktiekapitalsökning"/>
+			<xs:enumeration value="Överklagan"/>
+			<xs:enumeration value="Beslut om utseende av likvidator överklagat"/>
+			<xs:enumeration value="Ökning av aktiekapitalet genom nyemission"/>
+			<xs:enumeration value="Ökning av aktiekapitalet genom utbyte av skuldebrev eller nyteckning genom optionsrätt"/>
+			<xs:enumeration value="Beslut om överlåtelse av försäkringsbestånd"/>
+			<xs:enumeration value="Överlåtelse av försäkringsbestånd har förfallit"/>
+			<xs:enumeration value="Tillstånd till överlåtelse av försäkringsbestånd"/>
+			<xs:enumeration value="Registrering av anmälan om genomförd delning "/>
+			<xs:enumeration value="Ansökan om tillstånd till delning"/>
+			<xs:enumeration value="Registrering av förfallen delning"/>
+			<xs:enumeration value="Registrering att kallelse av borgenärer utfärdats vid delning"/>
+			<xs:enumeration value="Registrering av delningsplan"/>
+			<xs:enumeration value="Registrering att kallelse av borgenärer utfärdats vid delning"/>
+			<xs:enumeration value="Registrering att tillståndsärende i delning överlämnats till rätten"/>
+			<xs:enumeration value="Registrering av tillstånd att verkställa delning"/>
+			<xs:enumeration value="Ändring av företrädare/firmateckning med verkan från en senare tidpunkt som angivits i beslutet"/>
+			<xs:enumeration value="Registrering att kallelse av borgenärer utfärdats vid fusion"/>
+			<xs:enumeration value="Registrering att kallelse av borgenärer utfärdats i ärende avseende tillstånd att minska aktiekapitalet"/>
+			<xs:enumeration value="Registrering att ärende avseende tillstånd att minska aktiekapitalet överlämnats till tingsrätt"/>
+			<xs:enumeration value="Anmälan om förtida anpassning av bolagsordning"/>
+			<xs:enumeration value="Registrering att kallelse av borgenärer utfärdats i ärende avseende tillstånd till vinstutdelning/tillstånd till minskning av reservfond"/>
+			<xs:enumeration value="Registrering att ärende avseende tillstånd till vinstutdelning/tillstånd till minskning av reservfond överlämnats till tingsrätt"/>
+			<xs:enumeration value="Handlingar i ärendet finns på annat språk än svenska"/>
+			<xs:enumeration value="Firmaskydd för europeisk intressegruppering"/>
+			<xs:enumeration value="Registrering och ändring av företagets e-postadress"/>
+			<xs:enumeration value="Ändring av försäkringsförmedlaruppgifter, avgiftsbelagd"/>
+			<xs:enumeration value="Skapande av FF-objekt"/>
+			<xs:enumeration value="Registervård av försäkringsförmedlaruppgifter"/>
+			<xs:enumeration value="Ändring av försäkringsförmedlaruppgifter, avgiftsfri"/>
+			<xs:enumeration value="Inkommet meddelande om framtida företrädarändring utan formell anmälan"/>
+			<xs:enumeration value="Bestridande av eller protest mot fusion"/>
+			<xs:enumeration value="Inkommen handling pga pågående fusion"/>
+			<xs:enumeration value="Inkommet meddelande om företrädarändring utan formell anmälan"/>
+			<xs:enumeration value="Förfrågan om företaget fortfarande bedriver verksamhet"/>
+			<xs:enumeration value="Likvidationsbeslut överklagat"/>
+			<xs:enumeration value="Oktroj återkallat"/>
+			<xs:enumeration value="Inkommen protest angående firma"/>
+			<xs:enumeration value="Ändring av företrädare pga näringsförbud"/>
+			<xs:enumeration value="Utgivande eller ändring av skuldebrev"/>
+			<xs:enumeration value="Tillstånd till vinstutdelning/tillstånd till minskning av reservfond"/>
+			<xs:enumeration value="Utgivande eller ändring av teckningsoptioner"/>
+			<xs:enumeration value="Ändring av uppgifter för juridisk person registrerad som företrädare/revisor"/>
+			<xs:enumeration value="Registeruppdatering på initiativ av Bolagsverket"/>
+			<xs:enumeration value="Gallringsförfrågan där bolaget inte anmält ändringar dom senaste 10 åren"/>
+			<xs:enumeration value="Gallringsförfrågan där antalet bolagsmän är färre än två"/>
+			<xs:enumeration value="Svar på gallringsförfrågan att verksamhet fortfarande bedrivs"/>
+			<xs:enumeration value="Registrering av värdepappersombud.(AB, BAB, FAB, SB)"/>			
+			<xs:enumeration value="Registrering av uppgifter om gränsöverskridande fusion"/>
+			<xs:enumeration value="Företaget har avförts p g a att det genom gränsöverskridande fusion har uppgått i ett utländskt företag"/>
+			<xs:enumeration value="Inkommen handling p g a pågående delning"/>			
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RubriceringsKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AABF"/>
+			<xs:enumeration value="AAF"/>
+			<xs:enumeration value="AAPF"/>
+			<xs:enumeration value="ACK"/>
+			<xs:enumeration value="ACKUHÄ"/>
+			<xs:enumeration value="ACKUHÖ"/>
+			<xs:enumeration value="AK"/>
+			<xs:enumeration value="AKG"/>
+			<xs:enumeration value="AKT"/>
+			<xs:enumeration value="AND"/>
+			<xs:enumeration value="ANDA"/>
+			<xs:enumeration value="ANM"/>
+			<xs:enumeration value="AUAR"/>
+			<xs:enumeration value="AV"/>
+			<xs:enumeration value="AVF"/>
+			<xs:enumeration value="AVFFLY"/>
+			<xs:enumeration value="AVFÖRD"/>
+			<xs:enumeration value="AVG"/>
+			<xs:enumeration value="AVREG"/>
+			<xs:enumeration value="AVRFLY"/>
+			<xs:enumeration value="AVRIN"/>
+			<xs:enumeration value="AVSL"/>
+			<xs:enumeration value="AVSLAG"/>
+			<xs:enumeration value="AVT"/>
+			<xs:enumeration value="BENY"/>
+			<xs:enumeration value="BESK"/>
+			<xs:enumeration value="BFU"/>
+			<xs:enumeration value="BIF"/>
+			<xs:enumeration value="BIFU"/>
+			<xs:enumeration value="BRFNED"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="DEA"/>
+			<xs:enumeration value="DELE"/>
+			<xs:enumeration value="DELG"/>
+			<xs:enumeration value="DELGP"/>
+			<xs:enumeration value="DELGU"/>
+			<xs:enumeration value="DELP"/>
+			<xs:enumeration value="DELTP"/>
+			<xs:enumeration value="DELÅR"/>
+			<xs:enumeration value="EFTG"/>
+			<xs:enumeration value="EJV"/>
+			<xs:enumeration value="EKPLAN"/>
+			<xs:enumeration value="FAX"/>
+			<xs:enumeration value="FELU"/>
+			<xs:enumeration value="FIRM"/>
+			<xs:enumeration value="FOBO"/>
+			<xs:enumeration value="FORT"/>
+			<xs:enumeration value="FRI"/>
+			<xs:enumeration value="FU"/>
+			<xs:enumeration value="FUAN"/>
+			<xs:enumeration value="FUAT"/>
+			<xs:enumeration value="FUAV"/>
+			<xs:enumeration value="FUBE"/>
+			<xs:enumeration value="FUFÖ"/>
+			<xs:enumeration value="FUKALL"/>
+			<xs:enumeration value="FUOTR"/>
+			<xs:enumeration value="FUPL"/>
+			<xs:enumeration value="FUSAN"/>
+			<xs:enumeration value="FUSFÖ"/>
+			<xs:enumeration value="FUSTI"/>
+			<xs:enumeration value="FUSVE"/>
+			<xs:enumeration value="FUTI"/>
+			<xs:enumeration value="FUTST"/>
+			<xs:enumeration value="FUVE"/>
+			<xs:enumeration value="FUVIL"/>
+			<xs:enumeration value="FUÅT"/>
+			<xs:enumeration value="FUÖT"/>
+			<xs:enumeration value="FÖR"/>
+			<xs:enumeration value="FÖRAV"/>
+			<xs:enumeration value="FÖRFTG"/>
+			<xs:enumeration value="FÖRGR"/>
+			<xs:enumeration value="FÖRIN"/>
+			<xs:enumeration value="FÖRP"/>
+			<xs:enumeration value="FÖRU"/>
+			<xs:enumeration value="GARKAP"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="HSÄTE"/>
+			<xs:enumeration value="IN"/>
+			<xs:enumeration value="KALL"/>
+			<xs:enumeration value="KAPGRÄNS"/>
+			<xs:enumeration value="KK"/>
+			<xs:enumeration value="KKAVMÖ"/>
+			<xs:enumeration value="KKAVSL"/>
+			<xs:enumeration value="KKFORT"/>
+			<xs:enumeration value="KKFV"/>
+			<xs:enumeration value="KKUHÄ"/>
+			<xs:enumeration value="KONC"/>
+			<xs:enumeration value="KONCFÖ"/>
+			<xs:enumeration value="KONV"/>
+			<xs:enumeration value="KONVM"/>
+			<xs:enumeration value="KÖ"/>
+			<xs:enumeration value="KÖA"/>
+			<xs:enumeration value="LAGER"/>
+			<xs:enumeration value="LAN"/>
+			<xs:enumeration value="LI"/>
+			<xs:enumeration value="LIA"/>
+			<xs:enumeration value="LIAVSL"/>
+			<xs:enumeration value="LIFORT"/>
+			<xs:enumeration value="LIKALL"/>
+			<xs:enumeration value="LIKALLÖ"/>
+			<xs:enumeration value="LIKV"/>
+			<xs:enumeration value="LIKVP"/>
+			<xs:enumeration value="LIKVU"/>
+			<xs:enumeration value="LITR"/>
+			<xs:enumeration value="LIUHÄ"/>
+			<xs:enumeration value="LIUPÅV"/>
+			<xs:enumeration value="LIÖKL"/>
+			<xs:enumeration value="LIÖKLU"/>
+			<xs:enumeration value="LST"/>
+			<xs:enumeration value="MPA"/>
+			<xs:enumeration value="MREVF"/>
+			<xs:enumeration value="MREVU"/>
+			<xs:enumeration value="NK"/>
+			<xs:enumeration value="NKFÖ"/>
+			<xs:enumeration value="NKTST"/>
+			<xs:enumeration value="NYB"/>
+			<xs:enumeration value="OK"/>
+			<xs:enumeration value="OMBAB"/>
+			<xs:enumeration value="OMBFÖ"/>
+			<xs:enumeration value="OMBTST"/>
+			<xs:enumeration value="OMBVE"/>
+			<xs:enumeration value="OMP"/>
+			<xs:enumeration value="OMRÄK"/>
+			<xs:enumeration value="ORDN"/>
+			<xs:enumeration value="OS"/>
+			<xs:enumeration value="OSA"/>
+			<xs:enumeration value="PA"/>
+			<xs:enumeration value="PARF"/>
+			<xs:enumeration value="PARFU"/>
+			<xs:enumeration value="PERIOD"/>
+			<xs:enumeration value="PR"/>
+			<xs:enumeration value="PRA"/>
+			<xs:enumeration value="PRIV"/>
+			<xs:enumeration value="PROT"/>
+			<xs:enumeration value="PRV"/>
+			<xs:enumeration value="PRVEFG"/>
+			<xs:enumeration value="PRVFÖR"/>
+			<xs:enumeration value="PRVFÖRK"/>
+			<xs:enumeration value="PRVK"/>
+			<xs:enumeration value="PRVLI"/>
+			<xs:enumeration value="PRVN"/>
+			<xs:enumeration value="PRVNF"/>
+			<xs:enumeration value="PRVOMP"/>
+			<xs:enumeration value="PRVPERS"/>
+			<xs:enumeration value="PRVPKK"/>
+			<xs:enumeration value="PRVREV"/>
+			<xs:enumeration value="PRVREVK"/>
+			<xs:enumeration value="PRVREVN"/>
+			<xs:enumeration value="PUBL"/>
+			<xs:enumeration value="RE"/>
+			<xs:enumeration value="REA"/>
+			<xs:enumeration value="REFA"/>
+			<xs:enumeration value="REGL"/>
+			<xs:enumeration value="REGLÄN"/>
+			<xs:enumeration value="REGÖVR"/>
+			<xs:enumeration value="REK"/>
+			<xs:enumeration value="REKUHÄ"/>
+			<xs:enumeration value="REKUHÖ"/>
+			<xs:enumeration value="REST"/>
+			<xs:enumeration value="REV"/>
+			<xs:enumeration value="REVA"/>
+			<xs:enumeration value="REVB"/>
+			<xs:enumeration value="REVE"/>
+			<xs:enumeration value="REVF"/>
+			<xs:enumeration value="REVP"/>
+			<xs:enumeration value="REVU"/>
+			<xs:enumeration value="RFU"/>
+			<xs:enumeration value="RPA"/>
+			<xs:enumeration value="RÄK"/>
+			<xs:enumeration value="RÄKPER"/>
+			<xs:enumeration value="RÄKUTL"/>
+			<xs:enumeration value="SK"/>
+			<xs:enumeration value="SKYDDREG"/>
+			<xs:enumeration value="SPA"/>
+			<xs:enumeration value="SR"/>
+			<xs:enumeration value="SRU"/>
+			<xs:enumeration value="ST"/>
+			<xs:enumeration value="STAD"/>
+			<xs:enumeration value="STE"/>
+			<xs:enumeration value="STG"/>
+			<xs:enumeration value="STIFT"/>
+			<xs:enumeration value="STP"/>
+			<xs:enumeration value="SÄTE"/>
+			<xs:enumeration value="TILLST"/>
+			<xs:enumeration value="TILLÅTK"/>
+			<xs:enumeration value="TST"/>
+			<xs:enumeration value="TSTÅTER"/>
+			<xs:enumeration value="TSTÅTK"/>
+			<xs:enumeration value="TYPBRF"/>
+			<xs:enumeration value="TYPHB"/>
+			<xs:enumeration value="TYPKB"/>
+			<xs:enumeration value="UB"/>
+			<xs:enumeration value="UBÅV"/>
+			<xs:enumeration value="UHÄ"/>
+			<xs:enumeration value="UHÖ"/>
+			<xs:enumeration value="UP"/>
+			<xs:enumeration value="UPPH"/>
+			<xs:enumeration value="UR"/>
+			<xs:enumeration value="UTD"/>
+			<xs:enumeration value="UTL"/>
+			<xs:enumeration value="V"/>
+			<xs:enumeration value="VALUTA"/>
+			<xs:enumeration value="VD"/>
+			<xs:enumeration value="VDA"/>
+			<xs:enumeration value="VERK"/>
+			<xs:enumeration value="VITE"/>
+			<xs:enumeration value="XBRL"/>
+			<xs:enumeration value="ÅR"/>
+			<xs:enumeration value="ÅRA"/>
+			<xs:enumeration value="ÅRSLUT"/>
+			<xs:enumeration value="ÅRSRED"/>
+			<xs:enumeration value="ÖK"/>
+			<xs:enumeration value="ÖKBET"/>
+			<xs:enumeration value="ÖKFO"/>
+			<xs:enumeration value="ÖKFÖ"/>
+			<xs:enumeration value="ÖKLA"/>
+			<xs:enumeration value="ÖKLU"/>
+			<xs:enumeration value="ÖKNY"/>
+			<xs:enumeration value="ÖKSK"/>
+			<xs:enumeration value="ÖVBE"/>
+			<xs:enumeration value="ÖVFÖ"/>
+			<xs:enumeration value="ÖVTST"/>
+			<xs:enumeration value="DELAN"/>
+			<xs:enumeration value="DELAT"/>
+			<xs:enumeration value="DELFÖ"/>
+			<xs:enumeration value="DELKALL"/>
+			<xs:enumeration value="DELPL"/>
+			<xs:enumeration value="DELPLKALL"/>
+			<xs:enumeration value="DELOTR"/>
+			<xs:enumeration value="DELTI"/>
+			<xs:enumeration value="FRAM"/>
+			<xs:enumeration value="FUPLKALL"/>
+			<xs:enumeration value="NKKALL"/>
+			<xs:enumeration value="NKOTR"/>
+			<xs:enumeration value="ORDNABL"/>
+			<xs:enumeration value="TIKALL"/>
+			<xs:enumeration value="TIOTR"/>
+			<xs:enumeration value="AS"/>
+			<xs:enumeration value="EEIG "/>
+			<xs:enumeration value="EPA"/>
+			<xs:enumeration value="FFAN"/>
+			<xs:enumeration value="FFNY"/>
+			<xs:enumeration value="FFRV"/>
+			<xs:enumeration value="FFUA"/>
+			<xs:enumeration value="FRAMMED"/>
+			<xs:enumeration value="FUBESTR"/>
+			<xs:enumeration value="FUÖVR"/>
+			<xs:enumeration value="FÖRMED"/>
+			<xs:enumeration value="GALLRA"/>
+			<xs:enumeration value="ÖKL"/>
+			<xs:enumeration value="OKTÅT"/>
+			<xs:enumeration value="PROTEST"/>
+			<xs:enumeration value="PRVFÖRN"/>
+			<xs:enumeration value="SKKON"/>
+			<xs:enumeration value="TIVUM"/>
+			<xs:enumeration value="TOPT"/>
+			<xs:enumeration value="BVEJUR"/>
+            <xs:enumeration value="BVEÖVR"/>			
+			<xs:enumeration value="GALLTID"/>
+			<xs:enumeration value="GALLBO"/>
+			<xs:enumeration value="GALLEJ"/>
+			<xs:enumeration value="VPO"/>
+			<xs:enumeration value="REGFU"/>
+			<xs:enumeration value="AVFFU"/>
+			<xs:enumeration value="DEÖVR"/>			
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LikvidationsforelaggandeKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="8:3"/>
+			<xs:enumeration value="13:4"/>
+			<xs:enumeration value="13:4A"/>
+			<xs:enumeration value="13:19"/>
+			<xs:enumeration value="11:3"/>
+			<xs:enumeration value="13:10"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LikvidationsforelaggandeTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="VD Saknas"/>
+			<xs:enumeration value="Obehörig styrelse"/>
+			<xs:enumeration value="Behörig revisor saknas"/>
+			<xs:enumeration value="Konkurs avslutad med överskott"/>
+			<xs:enumeration value="Årsredovisning saknas"/>
+			<xs:enumeration value="Särskild delgivningsmottagare saknas"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RubriceringStatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ADACTA"/>
+			<xs:enumeration value="REG"/>
+			<xs:enumeration value="AVSKR"/>
+			<xs:enumeration value="ÅTERKA"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ArendeStatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Inneliggande ärende"/>
+			<xs:enumeration value="Handläggning startad"/>
+			<xs:enumeration value="Ärendet är registrerat"/>
+			<xs:enumeration value="Ärendet är avskrivet"/>
+			<xs:enumeration value="Ärendet är återkallat"/>
+			<xs:enumeration value="Avslag på ärendet"/>
+			<xs:enumeration value="Ärendet är lagt i adacta"/>
+			<xs:enumeration value="Ärendet är korrigerat"/>
+			<xs:enumeration value="Korrigerring inledd"/>
+			<xs:enumeration value="Ärendet är konverterat"/>
+			<xs:enumeration value="Ärendet är överfört till annat ärende"/>
+			<xs:enumeration value="Ärendet är avslutat"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ArendeStatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="INNEL"/>
+			<xs:enumeration value="ÖPPET"/>
+			<xs:enumeration value="REG"/>
+			<xs:enumeration value="AVSKR"/>
+			<xs:enumeration value="ÅTERKALL"/>
+			<xs:enumeration value="AVSLAG"/>
+			<xs:enumeration value="ADACTA"/>
+			<xs:enumeration value="KORR AVS"/>
+			<xs:enumeration value="KORR INL"/>
+			<xs:enumeration value="KONV"/>
+			<xs:enumeration value="ÖVERFÖRT"/>
+			<xs:enumeration value="AVS"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AdressType">
+		<xs:sequence>
+			<xs:element name="CO" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Postadress" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="32"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Postnummer" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Postort">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="32"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Land" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="kod" use="optional" type="xs:string" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AktieslagType">
+		<xs:sequence>
+			<xs:element name="Namn">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Antal">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:totalDigits value="19"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Rostvarde" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="EpostType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+			<xs:pattern value="[\S]+@[\S]+\.[\S]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ForetradareType">
+		<xs:sequence>
+			<xs:element name="ForetradarIdentitet" type="IdType" minOccurs="0"/>
+			<xs:element name="Status" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="kod" use="optional">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="pkk"/>
+										<xs:enumeration value="nf"/>
+										<xs:enumeration value="bf"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="datum" type="xs:date" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Funktion" minOccurs="0" maxOccurs="8">
+				<xs:complexType>
+					<xs:attribute name="typ" type="ForetradareFunktionTextType" use="required"/>
+					<xs:attribute name="typkod" type="ForetradareFunktionKodType" use="required"/>
+					<xs:attribute name="revisor" use="optional">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="godkänd"/>
+								<xs:enumeration value="auktoriserad"/>
+								<xs:enumeration value="godkänd revisorsexamen"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="representantRef" type="xs:IDREF" use="optional"/>
+					<xs:attribute name="representantID" type="xs:ID" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Fornamn" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Namn" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Adress" type="AdressType" minOccurs="0"/>
+			<xs:element name="Utlandsregistrerad" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Tillstand" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="tomDatum" type="xs:date" use="optional"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="status" type="xs:boolean" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Insats" type="ValutaType" minOccurs="0"/>
+			<xs:element name="Anteckning" type="xs:string" minOccurs="0"/>
+			<xs:element name="Anmarkning" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IdType">
+		<xs:sequence>
+			<xs:element name="Sekel" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:pattern value="18|19|20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="Organisationsnummer">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Personnummer">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Samordningsnummer">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="GDnummer">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="OvrigIdentitet">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="11"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Utlandskidentitet">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="40"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>				
+			</xs:choice>
+			<xs:element name="Lopnummer" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:totalDigits value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="bolagsverketsid" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="KommunType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="kod" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="[0][1-9]|[1-9][0-9]|[0][0]"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LanType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="kod" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="[0][1]|[0][3-9]|[1][0-9]|[2][0-5]|[0][0]|[0]"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="LanKommunType">
+		<xs:sequence>
+			<xs:element name="Lan" type="LanType"/>
+			<xs:element name="Kommun" type="KommunType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StatusType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="datum" type="xs:dateTime"/>
+				<xs:attribute name="kod" type="StatusKodType"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ParallellfirmaType">
+		<xs:sequence>
+			<xs:element name="Namn" type="xs:string"/>
+			<xs:element name="Registrerad" type="xs:date"/>
+			<xs:element name="SkyddsLan" type="LanType" minOccurs="0" maxOccurs="24"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BifirmaType">
+		<xs:sequence>
+			<xs:element name="Namn" type="xs:string"/>
+			<xs:element name="Verksamhet">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Registrerad" type="xs:date"/>
+			<xs:element name="Beslut" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="beslutAvStamma" type="xs:boolean" use="optional"/>
+					<xs:attribute name="typ" use="optional">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Stadgar"/>
+								<xs:enumeration value="Bolagsordning"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SkyddsLan" type="LanType" minOccurs="0" maxOccurs="24"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InformationshuvudType">
+		<xs:sequence>
+			<xs:element name="Avsandare" type="xs:string" minOccurs="0"/>
+			<xs:element name="Sekvensnummer" type="xs:string" minOccurs="0"/>
+			<xs:element name="MeddelandeTyp" type="xs:string" minOccurs="0"/>
+			<xs:element name="Referens" type="xs:string" minOccurs="0"/>
+			<xs:element name="MeddelandeDatumTid" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="SvarsInformation" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="kod" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:enumeration value="1002"/>
+								<xs:enumeration value="1003"/>
+								<xs:enumeration value="2000"/>
+								<xs:enumeration value="2010"/>
+								<xs:enumeration value="2012"/>
+								<xs:enumeration value="2013"/>
+								<xs:enumeration value="2020"/>
+								<xs:enumeration value="2021"/>
+								<xs:enumeration value="2030"/>
+								<xs:enumeration value="2031"/>
+								<xs:enumeration value="2050"/>
+								<xs:enumeration value="2051"/>
+								<xs:enumeration value="2052"/>
+								<xs:enumeration value="2053"/>
+								<xs:enumeration value="2054"/>
+								<xs:enumeration value="2055"/>
+								<xs:enumeration value="2056"/>
+								<xs:enumeration value="3000"/>
+								<xs:enumeration value="8000"/>
+								<xs:enumeration value="9999"/>
+								<xs:enumeration value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="text" type="xs:string" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SessionsId" type="xs:string" minOccurs="0"/>
+			<xs:element name="Referens2" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValutaType">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="valuta" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="sek"/>
+							<xs:enumeration value="eur"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="ForetagsformTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="aktiebolag"/>
+			<xs:enumeration value="bankaktiebolag"/>
+			<xs:enumeration value="bostadsförening"/>
+			<xs:enumeration value="bostadsrättsförening"/>
+			<xs:enumeration value="ekonomisk förening"/>
+			<xs:enumeration value="enkla bolag"/>
+			<xs:enumeration value="enskild näringsidkare"/>
+			<xs:enumeration value="europabolag"/>
+			<xs:enumeration value="europeisk ekonomisk intressegruppering"/>
+			<xs:enumeration value="filial"/>
+			<xs:enumeration value="försäkringsaktiebolag"/>
+			<xs:enumeration value="handelsbolag"/>
+			<xs:enumeration value="ideell förening som bedriver näring"/>
+			<xs:enumeration value="kommanditbolag"/>
+			<xs:enumeration value="kooperativ hyresrättsförening"/>
+			<xs:enumeration value="medlemsbank"/>
+			<xs:enumeration value="sambruksförening"/>
+			<xs:enumeration value="sparbank"/>
+			<xs:enumeration value="stiftelse som bedriver näring"/>
+			<xs:enumeration value="utländsk banks filial"/>
+			<xs:enumeration value="ömsesidigt försäkringsbolag"/>
+			<xs:enumeration value="europakooperativ"/>
+			<xs:enumeration value="trossamfund"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ForetagsformKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ab"/>
+			<xs:enumeration value="bab"/>
+			<xs:enumeration value="bf"/>
+			<xs:enumeration value="brf"/>
+			<xs:enumeration value="ek"/>
+			<xs:enumeration value="eb"/>
+			<xs:enumeration value="e"/>
+			<xs:enumeration value="se"/>
+			<xs:enumeration value="eeig"/>
+			<xs:enumeration value="fl"/>
+			<xs:enumeration value="fab"/>
+			<xs:enumeration value="hb"/>
+			<xs:enumeration value="i"/>
+			<xs:enumeration value="kb"/>
+			<xs:enumeration value="khf"/>
+			<xs:enumeration value="mb"/>
+			<xs:enumeration value="sf"/>
+			<xs:enumeration value="sb"/>
+			<xs:enumeration value="s"/>
+			<xs:enumeration value="bfl"/>
+			<xs:enumeration value="ofb"/>
+			<xs:enumeration value="sce"/>
+			<xs:enumeration value="tsf"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ForetradareFunktionTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="aktuarie"/>
+			<xs:enumeration value="bolagsman"/>
+			<xs:enumeration value="delgivningsbar person"/>
+			<xs:enumeration value="extern firmatecknare"/>
+			<xs:enumeration value="extern verkställande direktör"/>
+			<xs:enumeration value="extern vice verkställande direktör"/>
+			<xs:enumeration value="föreståndare"/>
+			<xs:enumeration value="huvudansvarig revisor"/>
+			<xs:enumeration value="innehavare"/>
+			<xs:enumeration value="kommanditdelägare"/>
+			<xs:enumeration value="komplementär"/>
+			<xs:enumeration value="lekmannarevisor"/>
+			<xs:enumeration value="lekmannarevisorssuppleant"/>
+			<xs:enumeration value="likvidator"/>
+			<xs:enumeration value="likvidator"/>
+			<xs:enumeration value="likvidatorssuppleant"/>
+			<xs:enumeration value="likvidatorssuppleant"/>
+			<xs:enumeration value="ordförande"/>
+			<xs:enumeration value="prokurist"/>
+			<xs:enumeration value="revisor"/>
+			<xs:enumeration value="revisorssuppleant"/>
+			<xs:enumeration value="styrelsesuppleant"/>
+			<xs:enumeration value="styrelsesuppleant"/>
+			<xs:enumeration value="styrelsesuppleant"/>
+			<xs:enumeration value="styrelseledamot"/>
+			<xs:enumeration value="styrelseledamot"/>
+			<xs:enumeration value="ställföreträdande verkställande direktör"/>
+			<xs:enumeration value="verkställande direktör"/>
+			<xs:enumeration value="verkställande ledamot"/>
+			<xs:enumeration value="vice ordförande"/>
+			<xs:enumeration value="vice verkställande direktör"/>
+			<xs:enumeration value="revisor"/>
+			<xs:enumeration value="revisorssuppleant"/>
+			<xs:enumeration value="representant"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ForetradareFunktionKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ak"/>
+			<xs:enumeration value="bo"/>
+			<xs:enumeration value="delg"/>
+			<xs:enumeration value="eft"/>
+			<xs:enumeration value="evd"/>
+			<xs:enumeration value="evvd"/>
+			<xs:enumeration value="fö"/>
+			<xs:enumeration value="revh"/>
+			<xs:enumeration value="in"/>
+			<xs:enumeration value="kd"/>
+			<xs:enumeration value="kp"/>
+			<xs:enumeration value="revl"/>
+			<xs:enumeration value="revsl"/>
+			<xs:enumeration value="likv"/>
+			<xs:enumeration value="li"/>
+			<xs:enumeration value="likvs"/>
+			<xs:enumeration value="ls"/>
+			<xs:enumeration value="of"/>
+			<xs:enumeration value="po"/>
+			<xs:enumeration value="rev"/>
+			<xs:enumeration value="revs"/>
+			<xs:enumeration value="supp"/>
+			<xs:enumeration value="suppl"/>
+			<xs:enumeration value="su"/>
+			<xs:enumeration value="led"/>
+			<xs:enumeration value="le"/>
+			<xs:enumeration value="svd"/>
+			<xs:enumeration value="vd"/>
+			<xs:enumeration value="vle"/>
+			<xs:enumeration value="vof"/>
+			<xs:enumeration value="vvd"/>
+			<xs:enumeration value="revt"/>
+			<xs:enumeration value="revst"/>
+			<xs:enumeration value="rep"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="ForetradareFunktionKodAttribute" type="ForetradareFunktionKodType"/>
+	<xs:complexType name="ForetradareFunktionType">
+		<xs:simpleContent>
+			<xs:extension base="ForetradareFunktionTextType">
+				<xs:attribute name="kod" type="ForetradareFunktionKodType"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="StatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="60"/>
+			<xs:enumeration value="61"/>
+			<xs:enumeration value="62"/>
+			<xs:enumeration value="63"/>
+			<xs:enumeration value="64"/>
+			<xs:enumeration value="70"/>
+			<xs:enumeration value="71"/>
+			<xs:enumeration value="73"/>
+			<xs:enumeration value="74"/>
+			<xs:enumeration value="75"/>
+			<xs:enumeration value="76"/>
+			<xs:enumeration value="77"/>
+			<xs:enumeration value="78"/>
+			<xs:enumeration value="80"/>
+			<xs:enumeration value="81"/>
+			<xs:enumeration value="82"/>
+			<xs:enumeration value="90"/>
+			<xs:enumeration value="91"/>
+			<xs:enumeration value="99"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Ackordsförhandling inledd"/>
+			<xs:enumeration value="Ackordsförhanling upphör"/>
+			<xs:enumeration value="Ackordsförhandling upphävd av rätt"/>
+			<xs:enumeration value="Konkurs inledd"/>
+			<xs:enumeration value="Konkurs avslutad"/>
+			<xs:enumeration value="Konkurs avslutad med överskott"/>
+			<xs:enumeration value="Konkurs upphävd av rätt"/>
+			<xs:enumeration value="Konkurs fortsätter"/>
+			<xs:enumeration value="Likvidation avslutad"/>
+			<xs:enumeration value="Likvidation beslutad"/>
+			<xs:enumeration value="Likvidation fortsätter"/>
+			<xs:enumeration value="Likvidation upphör, verksamheten återupptas"/>
+			<xs:enumeration value="Likvidation upphävd av rätt"/>
+			<xs:enumeration value="Bolaget avfört enl 13 kap 18 § ab. lagen"/>
+			<xs:enumeration value="Bolaget är avfört"/>
+			<xs:enumeration value="Fusion inledd"/>
+			<xs:enumeration value="Fusion avslutad"/>
+			<xs:enumeration value="Fusion tillåten"/>
+			<xs:enumeration value="Fusion pågår"/>
+			<xs:enumeration value="Avförd enligt 17 § 2 st Handelsregisterlagen"/>
+			<xs:enumeration value="Avförd enligt 11 kap 18 § lag om ek.föreningar"/>
+			<xs:enumeration value="Avregistrerad"/>
+			<xs:enumeration value="Avregistrerad p g a  ny innehavare"/>
+			<xs:enumeration value="Avförd, p g a fusion med utländskt företag"/>
+			<xs:enumeration value="Avförd pga utländskt företags likvidation/konkurs"/>
+			<xs:enumeration value="Avförd, verksamheten har upphört"/>
+			<xs:enumeration value="Avförd, filialen saknar verkställande direktör"/>
+			<xs:enumeration value="Avförd, enligt domstolsbeslut"/>
+			<xs:enumeration value="Avförd, årsredovisning saknas"/>
+			<xs:enumeration value="Bolaget avfört på egen begäran"/>
+			<xs:enumeration value="Bolaget avfört av Bolagsverket"/>
+			<xs:enumeration value="Avförd"/>
+			<xs:enumeration value="Avförd, omregistrerat till bankaktiebolag"/>
+			<xs:enumeration value="Beslut om ombildning"/>
+			<xs:enumeration value="Tillstånd till ombildning"/>
+			<xs:enumeration value="Avregistrerad pga ombildning"/>
+			<xs:enumeration value="Ombildning förfallen"/>
+			<xs:enumeration value="Företagsrekonstruktion inledd"/>
+			<xs:enumeration value="Företagsrekonstruktion upphörd"/>
+			<xs:enumeration value="Företagsrekonstruktion upphävd av rätt"/>
+			<xs:enumeration value="Delning pågår"/>
+			<xs:enumeration value="Upplöst genom delning"/>
+			<xs:enumeration value="Övertagande av bolag pågår"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ArendeIdType">
+		<xs:attribute name="artal" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="idnummer" type="xs:positiveInteger" use="required"/>
+	</xs:complexType>
+	<xs:attributeGroup name="ForetagsformAttribute">
+		<xs:attribute name="typ" type="ForetagsformTextType" use="optional"/>
+		<xs:attribute name="typkod" type="ForetagsformKodType" use="optional"/>
+	</xs:attributeGroup>
+	<xs:complexType name="ForetagsformType">
+		<xs:simpleContent>
+			<xs:extension base="ForetagsformTextType"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="VakansType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Ej fulltalig"/>
+			<xs:enumeration value="Ej behörig"/>
+			<xs:enumeration value="VD saknas"/>
+			<xs:enumeration value="Likvidator saknas"/>
+			<xs:enumeration value="Särskild delgivningsmottagare saknas"/>
+			<xs:enumeration value="Kvalificerad revisor saknas"/>
+			<xs:enumeration value="Ordförande saknas"/>
+			<xs:enumeration value="Föreståndare saknas from"/>
+			<xs:enumeration value="Vakans bolagsmän"/>
+			<xs:enumeration value="Komplementär saknas"/>
+			<xs:enumeration value="Styrelse saknas"/>
+			<xs:enumeration value="Anmärkning"/>
+			<xs:enumeration value="Bolagsmän saknas"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LandsKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AF"/>
+			<xs:enumeration value="AL"/>
+			<xs:enumeration value="DZ"/>
+			<xs:enumeration value="AD"/>
+			<xs:enumeration value="AO"/>
+			<xs:enumeration value="AG"/>
+			<xs:enumeration value="AE"/>
+			<xs:enumeration value="AR"/>
+			<xs:enumeration value="AM"/>
+			<xs:enumeration value="AU"/>
+			<xs:enumeration value="AZ"/>
+			<xs:enumeration value="BS"/>
+			<xs:enumeration value="BH"/>
+			<xs:enumeration value="BD"/>
+			<xs:enumeration value="BB"/>
+			<xs:enumeration value="BE"/>
+			<xs:enumeration value="BZ"/>
+			<xs:enumeration value="BJ"/>
+			<xs:enumeration value="BM"/>
+			<xs:enumeration value="BT"/>
+			<xs:enumeration value="BO"/>
+			<xs:enumeration value="BA"/>
+			<xs:enumeration value="BW"/>
+			<xs:enumeration value="BR"/>
+			<xs:enumeration value="BN"/>
+			<xs:enumeration value="BG"/>
+			<xs:enumeration value="BF"/>
+			<xs:enumeration value="BI"/>
+			<xs:enumeration value="CF"/>
+			<xs:enumeration value="CL"/>
+			<xs:enumeration value="CO"/>
+			<xs:enumeration value="KM"/>
+			<xs:enumeration value="CR"/>
+			<xs:enumeration value="CY"/>
+			<xs:enumeration value="DK"/>
+			<xs:enumeration value="DJ"/>
+			<xs:enumeration value="DM"/>
+			<xs:enumeration value="DO"/>
+			<xs:enumeration value="EC"/>
+			<xs:enumeration value="EG"/>
+			<xs:enumeration value="GQ"/>
+			<xs:enumeration value="SV"/>
+			<xs:enumeration value="CI"/>
+			<xs:enumeration value="ER"/>
+			<xs:enumeration value="EE"/>
+			<xs:enumeration value="ET"/>
+			<xs:enumeration value="FJ"/>
+			<xs:enumeration value="PH"/>
+			<xs:enumeration value="FI"/>
+			<xs:enumeration value="FR"/>
+			<xs:enumeration value="GA"/>
+			<xs:enumeration value="GM"/>
+			<xs:enumeration value="GE"/>
+			<xs:enumeration value="GH"/>
+			<xs:enumeration value="GI"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="GD"/>
+			<xs:enumeration value="GT"/>
+			<xs:enumeration value="GN"/>
+			<xs:enumeration value="GW"/>
+			<xs:enumeration value="GY"/>
+			<xs:enumeration value="HT"/>
+			<xs:enumeration value="HN"/>
+			<xs:enumeration value="IN"/>
+			<xs:enumeration value="ID"/>
+			<xs:enumeration value="IQ"/>
+			<xs:enumeration value="IR"/>
+			<xs:enumeration value="IE"/>
+			<xs:enumeration value="IS"/>
+			<xs:enumeration value="IL"/>
+			<xs:enumeration value="IT"/>
+			<xs:enumeration value="JM"/>
+			<xs:enumeration value="JP"/>
+			<xs:enumeration value="YE"/>
+			<xs:enumeration value="JO"/>
+			<xs:enumeration value="KH"/>
+			<xs:enumeration value="CM"/>
+			<xs:enumeration value="CA"/>
+			<xs:enumeration value="CV"/>
+			<xs:enumeration value="KZ"/>
+			<xs:enumeration value="KE"/>
+			<xs:enumeration value="CN"/>
+			<xs:enumeration value="KG"/>
+			<xs:enumeration value="KI"/>
+			<xs:enumeration value="CG"/>
+			<xs:enumeration value="CD"/>
+			<xs:enumeration value="KP"/>
+			<xs:enumeration value="KR"/>
+			<xs:enumeration value="HR"/>
+			<xs:enumeration value="CU"/>
+			<xs:enumeration value="KW"/>
+			<xs:enumeration value="LA"/>
+			<xs:enumeration value="LS"/>
+			<xs:enumeration value="LV"/>
+			<xs:enumeration value="LB"/>
+			<xs:enumeration value="LR"/>
+			<xs:enumeration value="LY"/>
+			<xs:enumeration value="LI"/>
+			<xs:enumeration value="LT"/>
+			<xs:enumeration value="LU"/>
+			<xs:enumeration value="MG"/>
+			<xs:enumeration value="MK"/>
+			<xs:enumeration value="MW"/>
+			<xs:enumeration value="MY"/>
+			<xs:enumeration value="MV"/>
+			<xs:enumeration value="ML"/>
+			<xs:enumeration value="MT"/>
+			<xs:enumeration value="MA"/>
+			<xs:enumeration value="MH"/>
+			<xs:enumeration value="MR"/>
+			<xs:enumeration value="MU"/>
+			<xs:enumeration value="MX"/>
+			<xs:enumeration value="FM"/>
+			<xs:enumeration value="MZ"/>
+			<xs:enumeration value="MD"/>
+			<xs:enumeration value="MC"/>
+			<xs:enumeration value="MN"/>
+			<xs:enumeration value="MM"/>
+			<xs:enumeration value="NA"/>
+			<xs:enumeration value="NR"/>
+			<xs:enumeration value="NL"/>
+			<xs:enumeration value="NP"/>
+			<xs:enumeration value="NI"/>
+			<xs:enumeration value="NE"/>
+			<xs:enumeration value="NG"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="NZ"/>
+			<xs:enumeration value="OM"/>
+			<xs:enumeration value="PK"/>
+			<xs:enumeration value="PW"/>
+			<xs:enumeration value="PA"/>
+			<xs:enumeration value="PG"/>
+			<xs:enumeration value="PY"/>
+			<xs:enumeration value="PE"/>
+			<xs:enumeration value="PL"/>
+			<xs:enumeration value="PT"/>
+			<xs:enumeration value="QA"/>
+			<xs:enumeration value="RO"/>
+			<xs:enumeration value="RW"/>
+			<xs:enumeration value="RU"/>
+			<xs:enumeration value="KN"/>
+			<xs:enumeration value="LC"/>
+			<xs:enumeration value="VC"/>
+			<xs:enumeration value="SB"/>
+			<xs:enumeration value="WS"/>
+			<xs:enumeration value="SM"/>
+			<xs:enumeration value="ST"/>
+			<xs:enumeration value="SA"/>
+			<xs:enumeration value="CH"/>
+			<xs:enumeration value="SN"/>
+			<xs:enumeration value="CS"/>
+			<xs:enumeration value="SC"/>
+			<xs:enumeration value="SL"/>
+			<xs:enumeration value="SG"/>
+			<xs:enumeration value="SK"/>
+			<xs:enumeration value="SI"/>
+			<xs:enumeration value="SO"/>
+			<xs:enumeration value="ES"/>
+			<xs:enumeration value="LK"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="SD"/>
+			<xs:enumeration value="SR"/>
+			<xs:enumeration value="SZ"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="ZA"/>
+			<xs:enumeration value="SY"/>
+			<xs:enumeration value="TJ"/>
+			<xs:enumeration value="TW"/>
+			<xs:enumeration value="TZ"/>
+			<xs:enumeration value="TD"/>
+			<xs:enumeration value="TH"/>
+			<xs:enumeration value="CZ"/>
+			<xs:enumeration value="TG"/>
+			<xs:enumeration value="TO"/>
+			<xs:enumeration value="TT"/>
+			<xs:enumeration value="TN"/>
+			<xs:enumeration value="TR"/>
+			<xs:enumeration value="TM"/>
+			<xs:enumeration value="TV"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="UG"/>
+			<xs:enumeration value="UA"/>
+			<xs:enumeration value="HU"/>
+			<xs:enumeration value="UY"/>
+			<xs:enumeration value="US"/>
+			<xs:enumeration value="UZ"/>
+			<xs:enumeration value="VU"/>
+			<xs:enumeration value="VA"/>
+			<xs:enumeration value="VE"/>
+			<xs:enumeration value="VN"/>
+			<xs:enumeration value="BY"/>
+			<xs:enumeration value="ZM"/>
+			<xs:enumeration value="ZW"/>
+			<xs:enumeration value="AT"/>
+			<xs:enumeration value="TL"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LandsTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Afghanistan"/>
+			<xs:enumeration value="Albanien"/>
+			<xs:enumeration value="Algeriet"/>
+			<xs:enumeration value="Andorra"/>
+			<xs:enumeration value="Angola"/>
+			<xs:enumeration value="Antigua och Barbuda"/>
+			<xs:enumeration value="Arabemiraten, förenade "/>
+			<xs:enumeration value="Argentina"/>
+			<xs:enumeration value="Armenien"/>
+			<xs:enumeration value="Australien"/>
+			<xs:enumeration value="Azerbajdzjan"/>
+			<xs:enumeration value="Bahamas"/>
+			<xs:enumeration value="Bahrain"/>
+			<xs:enumeration value="Bangladesh"/>
+			<xs:enumeration value="Barbados"/>
+			<xs:enumeration value="Belgien"/>
+			<xs:enumeration value="Belize"/>
+			<xs:enumeration value="Benin"/>
+			<xs:enumeration value="Bermuda"/>
+			<xs:enumeration value="Bhutan"/>
+			<xs:enumeration value="Bolivia"/>
+			<xs:enumeration value="Bosnien och Hercegovina"/>
+			<xs:enumeration value="Botswana"/>
+			<xs:enumeration value="Brasilien"/>
+			<xs:enumeration value="Brunei Darussalam"/>
+			<xs:enumeration value="Bulgarien"/>
+			<xs:enumeration value="Burkina Faso"/>
+			<xs:enumeration value="Burundi"/>
+			<xs:enumeration value="Centralafrikanska Republiken"/>
+			<xs:enumeration value="Chile"/>
+			<xs:enumeration value="Colombia"/>
+			<xs:enumeration value="Comorerna"/>
+			<xs:enumeration value="Costa Rica"/>
+			<xs:enumeration value="Cypern"/>
+			<xs:enumeration value="Danmark"/>
+			<xs:enumeration value="Djibouti"/>
+			<xs:enumeration value="Dominica"/>
+			<xs:enumeration value="Dominikanska Republiken"/>
+			<xs:enumeration value="Ecuador"/>
+			<xs:enumeration value="Egypten"/>
+			<xs:enumeration value="Ekvatorialguinea"/>
+			<xs:enumeration value="El Salvador"/>
+			<xs:enumeration value="Elfenbenskusten"/>
+			<xs:enumeration value="Eritrea"/>
+			<xs:enumeration value="Estland"/>
+			<xs:enumeration value="Etiopien"/>
+			<xs:enumeration value="Fijiöarna"/>
+			<xs:enumeration value="Filippinerna"/>
+			<xs:enumeration value="Finland"/>
+			<xs:enumeration value="Frankrike"/>
+			<xs:enumeration value="Gabon"/>
+			<xs:enumeration value="Gambia"/>
+			<xs:enumeration value="Georgien"/>
+			<xs:enumeration value="Ghana"/>
+			<xs:enumeration value="Gibraltar"/>
+			<xs:enumeration value="Grekland"/>
+			<xs:enumeration value="Grenada"/>
+			<xs:enumeration value="Guatemala"/>
+			<xs:enumeration value="Guinea"/>
+			<xs:enumeration value="Guinea-Bissau"/>
+			<xs:enumeration value="Guyana"/>
+			<xs:enumeration value="Haiti"/>
+			<xs:enumeration value="Honduras"/>
+			<xs:enumeration value="Indien"/>
+			<xs:enumeration value="Indonesien"/>
+			<xs:enumeration value="Irak"/>
+			<xs:enumeration value="Iran"/>
+			<xs:enumeration value="Irland"/>
+			<xs:enumeration value="Island"/>
+			<xs:enumeration value="Israel"/>
+			<xs:enumeration value="Italien"/>
+			<xs:enumeration value="Jamaica"/>
+			<xs:enumeration value="Japan"/>
+			<xs:enumeration value="Jemen"/>
+			<xs:enumeration value="Jordanien"/>
+			<xs:enumeration value="Kambodja"/>
+			<xs:enumeration value="Kamerun"/>
+			<xs:enumeration value="Kanada"/>
+			<xs:enumeration value="Kap Verde"/>
+			<xs:enumeration value="Kazakstan"/>
+			<xs:enumeration value="Kenya"/>
+			<xs:enumeration value="Kina"/>
+			<xs:enumeration value="Kirgistan"/>
+			<xs:enumeration value="Kiribati"/>
+			<xs:enumeration value="Kongo"/>
+			<xs:enumeration value="Kongo, Demokratiska Republiken"/>
+			<xs:enumeration value="Korea, Nord-"/>
+			<xs:enumeration value="Korea, Syd-"/>
+			<xs:enumeration value="Kroatien"/>
+			<xs:enumeration value="Kuba"/>
+			<xs:enumeration value="Kuwait"/>
+			<xs:enumeration value="Laos"/>
+			<xs:enumeration value="Lesotho"/>
+			<xs:enumeration value="Lettland"/>
+			<xs:enumeration value="Libanon"/>
+			<xs:enumeration value="Liberia"/>
+			<xs:enumeration value="Libyen"/>
+			<xs:enumeration value="Liechtenstein"/>
+			<xs:enumeration value="Litauen"/>
+			<xs:enumeration value="Luxemburg"/>
+			<xs:enumeration value="Madagaskar"/>
+			<xs:enumeration value="Makedonien"/>
+			<xs:enumeration value="Malawi"/>
+			<xs:enumeration value="Malaysia"/>
+			<xs:enumeration value="Maldiverna"/>
+			<xs:enumeration value="Mali"/>
+			<xs:enumeration value="Malta"/>
+			<xs:enumeration value="Marocko"/>
+			<xs:enumeration value="Marshallöarna"/>
+			<xs:enumeration value="Mauretanien"/>
+			<xs:enumeration value="Mauritius"/>
+			<xs:enumeration value="Mexiko"/>
+			<xs:enumeration value="Mikronesien"/>
+			<xs:enumeration value="Mocambique"/>
+			<xs:enumeration value="Moldavien"/>
+			<xs:enumeration value="Monaco"/>
+			<xs:enumeration value="Mongoliet"/>
+			<xs:enumeration value="Myanmar"/>
+			<xs:enumeration value="Namibia"/>
+			<xs:enumeration value="Nauru"/>
+			<xs:enumeration value="Nederländerna"/>
+			<xs:enumeration value="Nepal"/>
+			<xs:enumeration value="Nicaragua"/>
+			<xs:enumeration value="Niger"/>
+			<xs:enumeration value="Nigeria"/>
+			<xs:enumeration value="Norge"/>
+			<xs:enumeration value="Nya Zeeland"/>
+			<xs:enumeration value="Oman"/>
+			<xs:enumeration value="Pakistan"/>
+			<xs:enumeration value="Palau"/>
+			<xs:enumeration value="Panama"/>
+			<xs:enumeration value="Papua Nya Guinea"/>
+			<xs:enumeration value="Paraguay"/>
+			<xs:enumeration value="Peru"/>
+			<xs:enumeration value="Polen"/>
+			<xs:enumeration value="Portugal"/>
+			<xs:enumeration value="Qatar"/>
+			<xs:enumeration value="Rumänien"/>
+			<xs:enumeration value="Rwanda"/>
+			<xs:enumeration value="Ryssland"/>
+			<xs:enumeration value="Saint Kitts och Nevis"/>
+			<xs:enumeration value="Saint Lucia"/>
+			<xs:enumeration value="Saint Vincent och Grenadinerna"/>
+			<xs:enumeration value="Salomonöarna"/>
+			<xs:enumeration value="Samoa"/>
+			<xs:enumeration value="San Marino"/>
+			<xs:enumeration value="Sao Tome och Principe"/>
+			<xs:enumeration value="Saudiarabien"/>
+			<xs:enumeration value="Schweiz"/>
+			<xs:enumeration value="Senegal"/>
+			<xs:enumeration value="Serbien och Montenegro"/>
+			<xs:enumeration value="Seychellerna"/>
+			<xs:enumeration value="Sierra Leone"/>
+			<xs:enumeration value="Singapore"/>
+			<xs:enumeration value="Slovakien"/>
+			<xs:enumeration value="Slovenien"/>
+			<xs:enumeration value="Somalia"/>
+			<xs:enumeration value="Spanien"/>
+			<xs:enumeration value="Sri Lanka"/>
+			<xs:enumeration value="Storbritannien och Nordirland"/>
+			<xs:enumeration value="Sudan"/>
+			<xs:enumeration value="Surinam"/>
+			<xs:enumeration value="Swaziland"/>
+			<xs:enumeration value="Sverige"/>
+			<xs:enumeration value="Sydafrika"/>
+			<xs:enumeration value="Syrien"/>
+			<xs:enumeration value="Tadjikistan"/>
+			<xs:enumeration value="Taiwan"/>
+			<xs:enumeration value="Tanzania"/>
+			<xs:enumeration value="Tchad"/>
+			<xs:enumeration value="Thailand"/>
+			<xs:enumeration value="Tjeckien"/>
+			<xs:enumeration value="Togo"/>
+			<xs:enumeration value="Tonga"/>
+			<xs:enumeration value="Trinidad och Tobago"/>
+			<xs:enumeration value="Tunisien"/>
+			<xs:enumeration value="Turkiet"/>
+			<xs:enumeration value="Turkmenistan"/>
+			<xs:enumeration value="Tuvalu"/>
+			<xs:enumeration value="Tyskland"/>
+			<xs:enumeration value="Uganda"/>
+			<xs:enumeration value="Ukraina"/>
+			<xs:enumeration value="Ungern"/>
+			<xs:enumeration value="Uruguay"/>
+			<xs:enumeration value="USA"/>
+			<xs:enumeration value="Uzbekistan"/>
+			<xs:enumeration value="Vanuatu"/>
+			<xs:enumeration value="Vatikanstaten"/>
+			<xs:enumeration value="Venezuela"/>
+			<xs:enumeration value="Vietnam"/>
+			<xs:enumeration value="Vitryssland"/>
+			<xs:enumeration value="Zambia"/>
+			<xs:enumeration value="Zimbabwe"/>
+			<xs:enumeration value="Österrike"/>
+			<xs:enumeration value="Östtimor"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="MaltypAttribute" type="xs:string"/>
+	<xs:complexType name="MalnummerType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="MaltypAttribute"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="UtlandsregistreradTillstandType">
+		<xs:attribute name="tomDatum" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="UtlandsregistreradType">
+		<xs:sequence>
+			<xs:element name="Tillstand" type="UtlandsregistreradTillstandType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="RevisorType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="godkänd"/>
+			<xs:enumeration value="auktoriserad"/>
+			<xs:enumeration value="godkänd revisorsexamen"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KonkursStatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KonkursStatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Konkurs inledd"/>
+			<xs:enumeration value="Konkurs avslutad"/>
+			<xs:enumeration value="Konkurs avslutad med överskott"/>
+			<xs:enumeration value="Konkurs upphävd av rätt"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LikvidationsStatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LikvidationsStatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Likvidation avslutad"/>
+			<xs:enumeration value="Likvidation beslutad"/>
+			<xs:enumeration value="Likvidation fortsätter"/>
+			<xs:enumeration value="Likvidation upphör, verksamheten återupptas"/>
+			<xs:enumeration value="Likvidation upphävd av rätt"/>
+			<xs:enumeration value="Bolaget avfört enl 13 kap 18 § ab. lagen"/>
+			<xs:enumeration value="Bolaget är avfört"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AvregistreringsStatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="60"/>
+			<xs:enumeration value="61"/>
+			<xs:enumeration value="62"/>
+			<xs:enumeration value="63"/>
+			<xs:enumeration value="64"/>
+			<xs:enumeration value="70"/>
+			<xs:enumeration value="71"/>
+			<xs:enumeration value="73"/>
+			<xs:enumeration value="74"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AvregistreringsStatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Avförd enligt 17 § 2 st Handelsregisterlagen"/>
+			<xs:enumeration value="Avförd enligt 11 kap 18 § lag om ek.föreningar"/>
+			<xs:enumeration value="Avregistrerad"/>
+			<xs:enumeration value="Avregistrerad p g a  ny innehavare"/>
+			<xs:enumeration value="Avförd, p g a fusion med utländskt företag"/>
+			<xs:enumeration value="Avförd pga utländskt företags likvidation/konkurs"/>
+			<xs:enumeration value="Avförd, verksamheten har upphört"/>
+			<xs:enumeration value="Avförd, filialen saknar verkställande direktör"/>
+			<xs:enumeration value="Avförd, enligt domstolsbeslut"/>
+			<xs:enumeration value="Avförd, årsredovisning saknas"/>
+			<xs:enumeration value="Bolaget avfört på egen begäran"/>
+			<xs:enumeration value="Bolaget avfört av Bolagsverket"/>
+			<xs:enumeration value="Avförd"/>
+			<xs:enumeration value="Avförd, omregistrerat till bankaktiebolag"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AckordStatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AckordStatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Ackordsförhandling inledd"/>
+			<xs:enumeration value="Ackordsförhanling upphör"/>
+			<xs:enumeration value="Ackordsförhandling upphävd av rätt"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RekonstruktionsStatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Företagsrekonstruktion inledd"/>
+			<xs:enumeration value="Företagsrekonstruktion upphörd"/>
+			<xs:enumeration value="Företagsrekonstruktion upphävd av rätt"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RekonstruktionsStatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="80"/>
+			<xs:enumeration value="81"/>
+			<xs:enumeration value="82"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OmbildningsStatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Beslut om ombildning"/>
+			<xs:enumeration value="Tillstånd till ombildning"/>
+			<xs:enumeration value="Avregistrerad pga ombildning"/>
+			<xs:enumeration value="Ombildning förfallen"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OmbildningsStatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="75"/>
+			<xs:enumeration value="76"/>
+			<xs:enumeration value="77"/>
+			<xs:enumeration value="78"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ForandringsType">
+		<xs:sequence>
+			<xs:element name="AktiekapitalBelopp" type="ValutaType"/>
+			<xs:element name="NominelltBelopp" type="ValutaType" minOccurs="0"/>
+			<xs:element name="AntalAktier" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:totalDigits value="19"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BemyndigandeType">
+		<xs:sequence>
+			<xs:element name="Beslutsdatum" type="xs:date"/>
+			<xs:choice>
+				<xs:element name="ForeBolagstamma" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:positiveInteger">
+							<xs:totalDigits value="4"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AnnatDatum" type="xs:date" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="Fritext" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="typ" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="skuldebrev konvertibler"/>
+					<xs:enumeration value="teckningsoption"/>
+					<xs:enumeration value="nyemission"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SkuldebrevType">
+		<xs:sequence>
+			<xs:element name="Aktieslag" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Namn" maxOccurs="10">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="20"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Beslutsdatum" type="xs:date"/>
+			<xs:element name="BeslutatBelopp" type="ValutaType"/>
+			<xs:element name="LagstaBelopp" type="ValutaType" minOccurs="0"/>
+			<xs:element name="HogstaBelopp" type="ValutaType" minOccurs="0"/>
+			<xs:element name="TecknatBelopp" type="ValutaType"/>
+			<xs:element name="Konvertibler" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Belopp" type="ValutaType"/>
+						<xs:choice>
+							<xs:element name="UtbyteFrom" type="xs:date"/>
+							<xs:element name="UtbyteFromRegistrering" type="xs:boolean" fixed="true"/>
+						</xs:choice>
+						<xs:element name="UtbyteTom" type="xs:date"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Optioner" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Belopp" type="ValutaType"/>
+						<xs:choice>
+							<xs:element name="AktieteckningFrom" type="xs:date"/>
+							<xs:element name="AktieteckningFromRegistrering" type="xs:boolean"/>
+						</xs:choice>
+						<xs:element name="AktieteckningTom" type="xs:date" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AktiekapitalokningHogst" type="ValutaType"/>
+			<xs:element name="Anteckning" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="BolagsordningGodkandKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="re"/>
+			<xs:enumeration value="fi"/>
+			<xs:enumeration value="lb"/>
+			<xs:enumeration value="kf"/>
+			<xs:enumeration value="sa"/>
+			<xs:enumeration value="lf"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BolagsordningGodkandTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Regeringen"/>
+			<xs:enumeration value="Finansinspektionen"/>
+			<xs:enumeration value="Länsbostadsnämnden"/>
+			<xs:enumeration value="Kommunfullmäktige"/>
+			<xs:enumeration value="Svenska advokatsamfundet"/>
+			<xs:enumeration value="Landstingsfullmäktige"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NedsattningGenomKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ia"/>
+			<xs:enumeration value="ib"/>
+			<xs:enumeration value="sa"/>
+			<xs:enumeration value="uå"/>
+			<xs:enumeration value="mn"/>
+			<xs:enumeration value="mi"/>
+			<xs:enumeration value="ui"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NedsattningGenomTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Inlösen av aktier"/>
+			<xs:enumeration value="indragning utan återbetalning"/>
+			<xs:enumeration value="Sammanläggning"/>
+			<xs:enumeration value="Minskning av det nominella belopppet med återbetalning"/>
+			<xs:enumeration value="Minskning av det nominella belopppet utan återbetalning"/>
+			<xs:enumeration value="Med indragning av aktier"/>
+			<xs:enumeration value="Utan indragning av aktier"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FusionsStatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FusionsStatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Fusion inledd"/>
+			<xs:enumeration value="Fusion avslutad"/>
+			<xs:enumeration value="Fusion tillåten"/>
+			<xs:enumeration value="Fusion pågår"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DelningsStatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="90"/>
+			<xs:enumeration value="91"/>
+			<xs:enumeration value="99"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DelningsStatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Delning inledd"/>
+			<xs:enumeration value="Upplöst genom delning"/>
+			<xs:enumeration value="Övertagande av bolag pågår"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BolagsmarkeringTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="värdepapperscentralen"/>
+			<xs:enumeration value="nordiska-listan"/>
+			<xs:enumeration value="kreditmarknadsbolag"/>
+			<xs:enumeration value="kreditmarknadsförening"/>
+			<xs:enumeration value="inlåningsverksamhet"/>
+			<xs:enumeration value="finansiell verksamhet"/>
+			<xs:enumeration value="fondbolag"/>
+			<xs:enumeration value="värdepappersbolag"/>
+			<xs:enumeration value="börs- och clearingbolag"/>
+			<xs:enumeration value="börs- och clearingförening	"/>
+			<xs:enumeration value="särskild vinstutdelningsbegränsning"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BolagsmarkeringKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="vpc"/>
+			<xs:enumeration value="n"/>
+			<xs:enumeration value="kmb"/>
+			<xs:enumeration value="kmf"/>
+			<xs:enumeration value="iv"/>
+			<xs:enumeration value="fv"/>
+			<xs:enumeration value="fob"/>
+			<xs:enumeration value="vpb"/>
+			<xs:enumeration value="bcb"/>
+			<xs:enumeration value="bcf"/>
+			<xs:enumeration value="svb"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareFusionsplanDelningTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Regering"/>
+			<xs:enumeration value="Finansinspektionen"/>
+			<xs:enumeration value="Bolagsverket"/>
+			<xs:enumeration value="Domstol"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareFusionsplanDelningKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RE"/>
+			<xs:enumeration value="FI"/>
+			<xs:enumeration value="BVE"/>
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ForetagshuvudType">
+		<xs:sequence>
+			<xs:element name="Foretagsidentitet">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="IdType">
+							<xs:attribute name="registreringsdatum" type="xs:date"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Firma">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Namn">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="200"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Foretagsform" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="ForetagsformType">
+							<xs:attribute name="typ" type="ForetagsformKodType"/>
+							<xs:attribute name="skadeforsakringsbolag" type="xs:boolean"/>
+							<xs:attribute name="livforsakringsbolag" type="xs:boolean"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Status" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="StatusTextType">
+							<xs:attribute name="kod" type="StatusKodType"/>
+							<xs:attribute name="datum" type="xs:date" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LikvidationsForelaggande" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Meddelande" type="LikvidationsforelaggandeTextType"/>
+						<xs:element name="Svarsdatum" type="xs:date" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="InneliggandeAranden">
+				<xs:complexType>
+					<xs:attribute name="antal" type="xs:int" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="BeslutsfattareForeskrifterKodType">
+		<xs:annotation>
+			<xs:documentation>Beslutsfattarekoder positionerade mot beslutsfattare, foreskrifter kod</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RE"/>
+			<xs:enumeration value="FI"/>
+			<xs:enumeration value="LB"/>
+			<xs:enumeration value="KF"/>
+			<xs:enumeration value="SA"/>
+			<xs:enumeration value="LF"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareForeskrifterTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Regering"/>
+			<xs:enumeration value="Finansinspektionen"/>
+			<xs:enumeration value="Länsbostadsnämnden"/>
+			<xs:enumeration value="Kommunfullmäktige"/>
+			<xs:enumeration value="Svenska advokatsamfundet"/>
+			<xs:enumeration value="Landstingsfullmäktige"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareTingsrattDomstolTextType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareTingsrattDomstolKodType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareLikvidationTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Föreningsstämma/föreningen"/>
+			<xs:enumeration value="Stämma/Stiftelser"/>
+			<xs:enumeration value="Bolaget"/>
+			<xs:enumeration value="Domstol"/>
+			<xs:enumeration value="Bolagsverket"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareLikvidationKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="F"/>
+			<xs:enumeration value="S"/>
+			<xs:enumeration value="B"/>
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="V"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareFusionsavtalVerkstalldTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Regering"/>
+			<xs:enumeration value="Finansinspektionen"/>
+			<xs:enumeration value="Domstol"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareFusionsavtalVerkstalldKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RE"/>
+			<xs:enumeration value="FI"/>
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareFusionsavtalAnsokanTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Regering"/>
+			<xs:enumeration value="Finansinspektionen"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BeslutsfattareFusionsavtalAnsokanKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RE"/>
+			<xs:enumeration value="FI"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ForbehallText">
+		<xs:annotation>
+			<xs:documentation>Kod och text för förbehåll</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="textkod" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>
