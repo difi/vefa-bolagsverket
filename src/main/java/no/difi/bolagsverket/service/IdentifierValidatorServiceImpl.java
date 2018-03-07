@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * @see <a href="https://sv.wikipedia.org/wiki/Luhn-algoritmen"/>
  */
 @Slf4j
-class IdentifierValidatorImpl implements ValidatorService {
+public class IdentifierValidatorServiceImpl implements ValidatorService {
 
     private static final Pattern pattern = Pattern.compile("[0-9]{10}");
     private static final int[] weights = {2, 1, 2, 1, 2, 1, 2, 1, 2, 1};

@@ -8,11 +8,11 @@ import static org.junit.Assert.assertTrue;
 
 public class IdentifierValidatorServiceImplTest {
 
-    private IdentifierValidatorImpl target;
+    private IdentifierValidatorServiceImpl target;
 
     @Before
     public void setUp() {
-        target = new IdentifierValidatorImpl();
+        target = new IdentifierValidatorServiceImpl();
     }
 
     @Test(expected = NullPointerException.class)
