@@ -2,5 +2,5 @@ package no.difi.bolagsverket.request;
 
 public interface RequestProvider {
 
-    String getRequest(String organizationNumber);
+    String getRequest(String identifier);
 }
