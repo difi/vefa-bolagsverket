@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>no.difi.bolagsverket</groupId>
-    <artifactId>client</artifactId>
+    <artifactId>bolagsverket-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>client</name>
+    <name>bolagsverket-client</name>
     <description>Bolagsverket client</description>
 
     <parent>
@@ -24,6 +24,8 @@
         <java.version>1.8</java.version>
         <cobertura.plugin.version>2.7</cobertura.plugin.version>
         <maven-jaxb2-plugin-version>0.13.3</maven-jaxb2-plugin-version>
+        <docker.image.prefix>difimove2</docker.image.prefix>
+        <dockerfile.maven.plugin.version>1.4.0</dockerfile.maven.plugin.version>
     </properties>
 
     <dependencies>
@@ -168,6 +170,24 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${dockerfile.maven.plugin.version}</version>
+                <configuration>
+                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                    <skip>false</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>build-and-tag-latest</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
