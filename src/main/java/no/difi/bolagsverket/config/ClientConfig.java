@@ -4,6 +4,7 @@ import no.difi.bolagsverket.client.BolagsverketClient;
 import no.difi.bolagsverket.request.Base64RequestProviderImpl;
 import no.difi.bolagsverket.service.BolagsverketValidatorServiceImpl;
 import no.difi.bolagsverket.service.IdentifierValidatorServiceImpl;
+import no.difi.bolagsverket.service.ValidatorService;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,8 +32,18 @@ public class ClientConfig {
     }
 
     @Bean
-    public BolagsverketValidatorServiceImpl bolagsverketValidator(BolagsverketClient client) {
-        return new BolagsverketValidatorServiceImpl(client, new IdentifierValidatorServiceImpl());
+    public ValidatorService bolagsverketValidator(ClientProperties properties, BolagsverketClient client) {
+        ClientProperties.ValidationProperties validationProperties = properties.getValidation();
+        if (!validationProperties.isEnabled()) {
+            return s -> true;
+        }
+        ValidatorService service;
+        if (validationProperties.isCallingBolagsverket()) {
+            service = new BolagsverketValidatorServiceImpl(client, new IdentifierValidatorServiceImpl());
+        } else {
+            service = new IdentifierValidatorServiceImpl();
+        }
+        return service;
     }
 
 }

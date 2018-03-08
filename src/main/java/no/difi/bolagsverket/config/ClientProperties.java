@@ -30,4 +30,15 @@ public class ClientProperties {
         private Resource path;
         private String password;
     }
+
+    @Valid
+    private ValidationProperties validation;
+
+    @Data
+    public static class ValidationProperties {
+        @NotNull
+        private boolean enabled;
+        @NotNull
+        private boolean callingBolagsverket;
+    }
 }
