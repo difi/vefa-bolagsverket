@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.GregorianCalendar;
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 class RawRequestProviderImpl implements RequestProvider {
@@ -23,11 +24,12 @@ class RawRequestProviderImpl implements RequestProvider {
     private static final String PRODUKT_NAME = "F1Grundpaket";
 
     @Override
-    public String getRequest(String identifier) {
+    public Optional<String> getRequest(String identifier) {
         Objects.requireNonNull(identifier);
-        Foretagsfraga query = getForetagsfraga(identifier);
-
-        return null != query ? serializeQuery(query) : null;
+        String serializedQuery = serializeQuery(getForetagsfraga(identifier));
+        return null != serializedQuery
+                ? Optional.of(serializedQuery)
+                : Optional.empty();
     }
 
     private String serializeQuery(Foretagsfraga query) {

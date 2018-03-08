@@ -1,8 +1,12 @@
 package no.difi.bolagsverket.request;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Optional;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class RawRequestProviderImplTest {
 
@@ -20,7 +24,8 @@ public class RawRequestProviderImplTest {
 
     @Test
     public void testGetRequest_organizationNumberIsValid_shouldReturnNonNull() {
-        String result = target.getRequest("162021005489");
-        Assert.assertNotNull(result);
+        Optional<String> result = target.getRequest("162021005489");
+        assertTrue(result.isPresent());
+        assertFalse(result.get().isEmpty());
     }
 }

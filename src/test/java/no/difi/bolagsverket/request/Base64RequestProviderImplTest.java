@@ -1,7 +1,6 @@
 package no.difi.bolagsverket.request;
 
 import no.difi.bolagsverket.schema.Foretagsfraga;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,8 +12,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.ByteArrayInputStream;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class Base64RequestProviderImplTest {
@@ -33,29 +33,23 @@ public class Base64RequestProviderImplTest {
     }
 
     @Test
-    public void testGetRequest_organizationNumberIsValid_shouldReturnNonNull() {
-        String result = getRequestForIdentifier(BOLAGSVERKET_IDENTIFIER);
-        assertNotNull(result);
-    }
-
-    @Test
     public void testGetRequest_organizationNumberIsValid_decodedRequestShouldMatchSample() throws JAXBException {
-        String result = getRequestForIdentifier(BOLAGSVERKET_IDENTIFIER);
-        byte[] decodedResult = Base64.decode(result);
-        Foretagsfraga decodedQuery = unmarshallgetForetagsfraga(new ByteArrayInputStream(decodedResult));
+        Optional<String> result = getRequestForIdentifier(BOLAGSVERKET_IDENTIFIER);
+        byte[] decodedResult = Base64.decode(result.get());
+        Foretagsfraga decodedQuery = unmarshallGetForetagsfraga(new ByteArrayInputStream(decodedResult));
         List<Foretagsfraga.Produkt.Sokbegrepp> decodedTerms = decodedQuery.getProdukt().getSokbegrepp();
         String decodedIdentifier = decodedTerms.get(0).getForetagsidentitet().getOrganisationsnummer();
 
-        Assert.assertEquals(BOLAGSVERKET_IDENTIFIER, decodedIdentifier);
+        assertEquals(BOLAGSVERKET_IDENTIFIER, decodedIdentifier);
     }
 
-    private Foretagsfraga unmarshallgetForetagsfraga(ByteArrayInputStream inputStream) throws JAXBException {
+    private Foretagsfraga unmarshallGetForetagsfraga(ByteArrayInputStream inputStream) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(Foretagsfraga.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         return (Foretagsfraga) unmarshaller.unmarshal(inputStream);
     }
 
-    private String getRequestForIdentifier(String identifier) {
+    private Optional<String> getRequestForIdentifier(String identifier) {
         return target.getRequest(identifier);
     }
 

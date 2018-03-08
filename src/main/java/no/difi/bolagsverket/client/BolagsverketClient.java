@@ -8,6 +8,7 @@ import no.difi.bolagsverket.xml.GetProduktResponse;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 public class BolagsverketClient {
@@ -27,8 +28,11 @@ public class BolagsverketClient {
         GetProdukt request = new GetProdukt();
         request.setCertId(properties.getCertId());
         request.setUserId(properties.getUserId());
-        String xmlQuery = requestProvider.getRequest(organizationNumber);
-        request.setXmlFraga(xmlQuery);
+        Optional<String> xmlQuery = requestProvider.getRequest(organizationNumber);
+        if (!xmlQuery.isPresent()) {
+            return null;
+        }
+        request.setXmlFraga(xmlQuery.get());
         log.info("Getting response.");
         return (GetProduktResponse) template.marshalSendAndReceive(request);
     }

@@ -1,6 +1,8 @@
 package no.difi.bolagsverket.request;
 
+import java.util.Optional;
+
 public interface RequestProvider {
 
-    String getRequest(String identifier);
+    Optional<String> getRequest(String identifier);
 }
