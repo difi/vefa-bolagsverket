@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Optional;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
@@ -43,24 +45,24 @@ public class BolagsverketValidatorServiceImplTest {
     }
 
     @Test
-    public void testValidate_idValidationFailsAndClientReturnsNonNullEvenThoughNotRelevant_shouldFail() {
+    public void testValidate_idValidationFailsAndClientReturnsResponse_resultShouldBeFalse() {
         when(identifierValidatorMock.validate(anyString())).thenReturn(false);
-        when(clientMock.getProdukt(anyString())).thenReturn(mock(GetProduktResponse.class));
+        when(clientMock.getProdukt(anyString())).thenReturn(Optional.of(mock(GetProduktResponse.class)));
         assertFalse(target.validate("invalidId"));
     }
 
     @Test
-    public void testValidate_idValidationPassesAndClientReturnsNull_shouldReturnFalse() {
+    public void testValidate_idValidationPassesAndClientReturnsEmpty_resultShouldBeFalse() {
         when(identifierValidatorMock.validate(anyString())).thenReturn(true);
-        when(clientMock.getProdukt(anyString())).thenReturn(null);
+        when(clientMock.getProdukt(anyString())).thenReturn(Optional.empty());
         boolean result = target.validate("notFoundNumber");
         assertFalse(result);
     }
 
     @Test
-    public void testValidate_idValidationPassesAndClientReturnsNonNullEvenThoughNotRelevant_shouldFail() {
+    public void testValidate_idValidationPassesAndClientReturnsResponse_resultShouldBeTrue() {
         when(identifierValidatorMock.validate(anyString())).thenReturn(true);
-        when(clientMock.getProdukt(anyString())).thenReturn(mock(GetProduktResponse.class));
+        when(clientMock.getProdukt(anyString())).thenReturn(Optional.of(mock(GetProduktResponse.class)));
         assertTrue(target.validate("invalidId"));
     }
 

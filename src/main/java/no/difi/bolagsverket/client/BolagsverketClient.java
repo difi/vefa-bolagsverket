@@ -23,18 +23,18 @@ public class BolagsverketClient {
         this.requestProvider = Objects.requireNonNull(requestProvider);
     }
 
-    public GetProduktResponse getProdukt(String organizationNumber) {
+    public Optional<GetProduktResponse> getProdukt(String organizationNumber) {
         Objects.requireNonNull(organizationNumber);
         GetProdukt request = new GetProdukt();
         request.setCertId(properties.getCertId());
         request.setUserId(properties.getUserId());
         Optional<String> xmlQuery = requestProvider.getRequest(organizationNumber);
         if (!xmlQuery.isPresent()) {
-            return null;
+            return Optional.empty();
         }
         request.setXmlFraga(xmlQuery.get());
         log.info("Getting response.");
-        return (GetProduktResponse) template.marshalSendAndReceive(request);
+        return Optional.of((GetProduktResponse) template.marshalSendAndReceive(request));
     }
 
 }

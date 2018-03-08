@@ -5,6 +5,7 @@ import no.difi.bolagsverket.client.BolagsverketClient;
 import no.difi.bolagsverket.xml.GetProduktResponse;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 public class BolagsverketValidatorServiceImpl implements ValidatorService {
@@ -26,8 +27,7 @@ public class BolagsverketValidatorServiceImpl implements ValidatorService {
             return false;
         }
 
-        GetProduktResponse clientResponse = client.getProdukt(identifier);
-        return null != clientResponse;
-
+        Optional<GetProduktResponse> clientResponse = client.getProdukt(identifier);
+        return clientResponse.isPresent();
     }
 }

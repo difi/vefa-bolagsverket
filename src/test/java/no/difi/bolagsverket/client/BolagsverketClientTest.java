@@ -12,7 +12,7 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.when;
 
@@ -55,9 +55,9 @@ public class BolagsverketClientTest {
     }
 
     @Test
-    public void testGetProdukt_xmlQueryIsEmpty_shouldReturnNull() {
+    public void testGetProdukt_xmlQueryIsEmpty_resultShouldBeEmpty() {
         when(requestProviderMock.getRequest(anyString())).thenReturn(Optional.empty());
-        GetProduktResponse result = target.getProdukt("someId");
-        assertNull(result);
+        Optional<GetProduktResponse> result = target.getProdukt("someId");
+        assertFalse(result.isPresent());
     }
 }
