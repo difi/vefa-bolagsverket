@@ -117,22 +117,6 @@
                             <generatePackage>no.difi.bolagsverket.xml</generatePackage>
                             <generateDirectory>${project.build.directory}/generated-sources/xjc-wsdl</generateDirectory>
                             <removeOldOutput>true</removeOldOutput>
-                            <!--<args>-->
-                            <!--<arg>-Xfluent-builder</arg>-->
-                            <!--<arg>-Xannotate</arg>-->
-                            <!--</args>-->
-                            <!--<plugins>-->
-                            <!--<plugin>-->
-                            <!--<groupId>net.codesup.util</groupId>-->
-                            <!--<artifactId>jaxb2-rich-contract-plugin</artifactId>-->
-                            <!--<version>1.17.0</version>-->
-                            <!--</plugin>-->
-                            <!--<plugin>-->
-                            <!--<groupId>org.jvnet.jaxb2_commons</groupId>-->
-                            <!--<artifactId>jaxb2-basics-annotate</artifactId>-->
-                            <!--<version>1.0.2</version>-->
-                            <!--</plugin>-->
-                            <!--</plugins>-->
                         </configuration>
                     </execution>
                     <execution>
@@ -147,22 +131,16 @@
                             <generatePackage>no.difi.bolagsverket.schema</generatePackage>
                             <generateDirectory>${project.build.directory}/generated-sources/xjc-xsd</generateDirectory>
                             <removeOldOutput>true</removeOldOutput>
-                            <!--<args>-->
-                            <!--<arg>-Xfluent-builder</arg>-->
-                            <!--<arg>-Xannotate</arg>-->
-                            <!--</args>-->
-                            <!--<plugins>-->
-                            <!--<plugin>-->
-                            <!--<groupId>net.codesup.util</groupId>-->
-                            <!--<artifactId>jaxb2-rich-contract-plugin</artifactId>-->
-                            <!--<version>1.17.0</version>-->
-                            <!--</plugin>-->
-                            <!--<plugin>-->
-                            <!--<groupId>org.jvnet.jaxb2_commons</groupId>-->
-                            <!--<artifactId>jaxb2-basics-annotate</artifactId>-->
-                            <!--<version>1.0.2</version>-->
-                            <!--</plugin>-->
-                            <!--</plugins>-->
+                            <args>
+                                <arg>-Xfluent-builder</arg>
+                            </args>
+                            <plugins>
+                                <plugin>
+                                    <groupId>net.codesup.util</groupId>
+                                    <artifactId>jaxb2-rich-contract-plugin</artifactId>
+                                    <version>1.17.0</version>
+                                </plugin>
+                            </plugins>
                         </configuration>
                     </execution>
                 </executions>
@@ -181,7 +159,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>build-and-tag-latest</id>
+                        <id>build</id>
                         <phase>package</phase>
                         <goals>
                             <goal>build</goal>

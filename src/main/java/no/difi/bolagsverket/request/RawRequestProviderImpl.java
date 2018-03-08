@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import no.difi.bolagsverket.schema.Foretagsfraga;
 import no.difi.bolagsverket.schema.IdType;
 import no.difi.bolagsverket.schema.InformationshuvudType;
-import no.difi.bolagsverket.schema.ObjectFactory;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -20,7 +19,6 @@ import java.util.Objects;
 @Slf4j
 class RawRequestProviderImpl implements RequestProvider {
 
-    private final ObjectFactory objectFactory = new ObjectFactory();
     private static final String PRODUKT_VERSION = "2.00";
     private static final String PRODUKT_NAME = "F1Grundpaket";
 
@@ -48,36 +46,35 @@ class RawRequestProviderImpl implements RequestProvider {
     }
 
     private Foretagsfraga getForetagsfraga(String identifier) {
-        Foretagsfraga query = objectFactory.createForetagsfraga();
         InformationshuvudType header = getInformationshuvudType();
-        query.setInformationshuvud(header);
         Foretagsfraga.Produkt produkt = getProdukt(identifier);
-        query.setProdukt(produkt);
-
-        return query;
+        return Foretagsfraga.builder()
+                .withInformationshuvud(header)
+                .withProdukt(produkt)
+                .build();
     }
 
     private Foretagsfraga.Produkt getProdukt(String identifier) {
-        Foretagsfraga.Produkt produkt = objectFactory.createForetagsfragaProdukt();
-        produkt.setVersion(PRODUKT_VERSION);
-        produkt.setNamn(PRODUKT_NAME);
-        Foretagsfraga.Produkt.Sokbegrepp queryTerm = objectFactory.createForetagsfragaProduktSokbegrepp();
-        IdType idType = objectFactory.createIdType();
-        idType.setOrganisationsnummer(identifier);
-        queryTerm.setForetagsidentitet(idType);
-        produkt.getSokbegrepp().add(queryTerm);
-        return produkt;
+        Foretagsfraga.Produkt.Sokbegrepp queryTerm = Foretagsfraga.Produkt.Sokbegrepp.builder()
+                .withForetagsidentitet(IdType.builder().withOrganisationsnummer(identifier).build())
+                .build();
+        return Foretagsfraga.Produkt.builder()
+                .withVersion(PRODUKT_VERSION)
+                .withNamn(PRODUKT_NAME)
+                .withSokbegrepp(queryTerm)
+                .build();
     }
 
     private InformationshuvudType getInformationshuvudType() {
-        InformationshuvudType header = objectFactory.createInformationshuvudType();
+        XMLGregorianCalendar requestTime = null;
         try {
             DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
-            XMLGregorianCalendar requestTime = datatypeFactory.newXMLGregorianCalendar(new GregorianCalendar());
-            header.setMeddelandeDatumTid(requestTime);
+            requestTime = datatypeFactory.newXMLGregorianCalendar(new GregorianCalendar());
         } catch (DatatypeConfigurationException e) {
             log.error("Failed to set request time.", e);
         }
-        return header;
+        return null != requestTime
+                ? InformationshuvudType.builder().withMeddelandeDatumTid(requestTime).build()
+                : InformationshuvudType.builder().build();
     }
 }
