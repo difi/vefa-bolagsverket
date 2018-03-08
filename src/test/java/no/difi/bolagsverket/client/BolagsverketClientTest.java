@@ -2,6 +2,7 @@ package no.difi.bolagsverket.client;
 
 import no.difi.bolagsverket.config.ClientProperties;
 import no.difi.bolagsverket.request.RequestProvider;
+import no.difi.bolagsverket.xml.GetProduktResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.when;
 
@@ -46,13 +48,14 @@ public class BolagsverketClientTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void testGetProdukt_identifierIsNull_shouldThrow() throws ClientException {
+    public void testGetProdukt_identifierIsNull_shouldThrow() {
         target.getProdukt(null);
     }
 
-    @Test(expected = ClientException.class)
-    public void testGetProdukt_xmlQueryIsNotProvided_shouldThrow() throws ClientException {
+    @Test
+    public void testGetProdukt_xmlQueryIsEmpty_shouldReturnNull() {
         when(requestProviderMock.getRequest(anyString())).thenReturn(null);
-        target.getProdukt("someId");
+        GetProduktResponse result = target.getProdukt("someId");
+        assertNull(result);
     }
 }

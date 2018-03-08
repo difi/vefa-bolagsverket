@@ -22,15 +22,12 @@ public class BolagsverketClient {
         this.requestProvider = Objects.requireNonNull(requestProvider);
     }
 
-    public GetProduktResponse getProdukt(String organizationNumber) throws ClientException {
+    public GetProduktResponse getProdukt(String organizationNumber) {
         Objects.requireNonNull(organizationNumber);
         GetProdukt request = new GetProdukt();
         request.setCertId(properties.getCertId());
         request.setUserId(properties.getUserId());
         String xmlQuery = requestProvider.getRequest(organizationNumber);
-        if (null == xmlQuery) {
-            throw new ClientException("Request generation failed.");
-        }
         request.setXmlFraga(xmlQuery);
         log.info("Getting response.");
         return (GetProduktResponse) template.marshalSendAndReceive(request);

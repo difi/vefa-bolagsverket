@@ -1,7 +1,6 @@
 package no.difi.bolagsverket.service;
 
 import no.difi.bolagsverket.client.BolagsverketClient;
-import no.difi.bolagsverket.client.ClientException;
 import no.difi.bolagsverket.xml.GetProduktResponse;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,14 +43,14 @@ public class BolagsverketValidatorServiceImplTest {
     }
 
     @Test
-    public void testValidate_idValidationFailsAndClientReturnsNonNullEvenThoughNotRelevant_shouldFail() throws ClientException {
+    public void testValidate_idValidationFailsAndClientReturnsNonNullEvenThoughNotRelevant_shouldFail() {
         when(identifierValidatorMock.validate(anyString())).thenReturn(false);
         when(clientMock.getProdukt(anyString())).thenReturn(mock(GetProduktResponse.class));
         assertFalse(target.validate("invalidId"));
     }
 
     @Test
-    public void testValidate_idValidationPassesAndClientReturnsNull_shouldReturnFalse() throws ClientException {
+    public void testValidate_idValidationPassesAndClientReturnsNull_shouldReturnFalse() {
         when(identifierValidatorMock.validate(anyString())).thenReturn(true);
         when(clientMock.getProdukt(anyString())).thenReturn(null);
         boolean result = target.validate("notFoundNumber");
@@ -59,7 +58,7 @@ public class BolagsverketValidatorServiceImplTest {
     }
 
     @Test
-    public void testValidate_idValidationPassesAndClientReturnsNonNullEvenThoughNotRelevant_shouldFail() throws ClientException {
+    public void testValidate_idValidationPassesAndClientReturnsNonNullEvenThoughNotRelevant_shouldFail() {
         when(identifierValidatorMock.validate(anyString())).thenReturn(true);
         when(clientMock.getProdukt(anyString())).thenReturn(mock(GetProduktResponse.class));
         assertTrue(target.validate("invalidId"));
