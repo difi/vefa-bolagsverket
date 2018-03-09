@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.net.URL;
+import java.security.KeyStore;
 
 @Data
 @Validated
@@ -22,17 +23,24 @@ public class ClientProperties {
     private String certId;
 
     @Valid
-    private KeyStoreProperties keyStore;
-
-    @Data
-    @ToString(exclude = "password")
-    public static class KeyStoreProperties {
-        private Resource path;
-        private String password;
-    }
+    private KeyStoreProperties keystore;
 
     @Valid
+    private KeyStoreProperties truststore;
+    @Valid
     private ValidationProperties validation;
+
+    @Data
+    @ToString(exclude = {"password", "keyPassword"})
+    public static class KeyStoreProperties {
+        private String type = KeyStore.getDefaultType();
+        @NotNull
+        private Resource path;
+        @NotNull
+        private String password;
+        private String keyAlias;
+        private String keyPassword;
+    }
 
     @Data
     public static class ValidationProperties {

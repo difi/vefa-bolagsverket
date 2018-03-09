@@ -21,7 +21,7 @@ public class BolagsverketValidatorServiceImpl implements ValidatorService {
     @Override
     public boolean validate(String identifier) {
         Objects.requireNonNull(identifier);
-        log.info(String.format("Validating identifier %s", identifier));
+        log.info("Validating identifier '{}'.", identifier);
         if (!identifierValidator.validate(identifier)) {
             log.info(String.format("Identifier validation failed: %s", identifier));
             return false;

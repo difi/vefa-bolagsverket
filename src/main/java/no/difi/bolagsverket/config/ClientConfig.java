@@ -1,16 +1,27 @@
 package no.difi.bolagsverket.config;
 
+import lombok.extern.slf4j.Slf4j;
 import no.difi.bolagsverket.client.BolagsverketClient;
 import no.difi.bolagsverket.request.Base64RequestProviderImpl;
+import no.difi.bolagsverket.security.KeyStoreProvider;
 import no.difi.bolagsverket.service.BolagsverketValidatorServiceImpl;
 import no.difi.bolagsverket.service.IdentifierValidatorServiceImpl;
 import no.difi.bolagsverket.service.ValidatorService;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
+import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 
+import javax.net.ssl.SSLContext;
+import java.security.KeyStore;
+
+@Slf4j
 @Configuration
 @EnableConfigurationProperties(ClientProperties.class)
 public class ClientConfig {
@@ -25,10 +36,34 @@ public class ClientConfig {
     @Bean
     public BolagsverketClient bolagsverketClient(ClientProperties properties, Jaxb2Marshaller marshaller) {
         WebServiceTemplate template = new WebServiceTemplate();
+
+        CloseableHttpClient httpClient = getCloseableHttpClient(properties);
+        HttpComponentsMessageSender sender = new HttpComponentsMessageSender(httpClient);
+        template.setMessageSender(sender);
+
         template.setDefaultUri(properties.getServiceEndpoint().toString());
         template.setMarshaller(marshaller);
         template.setUnmarshaller(marshaller);
         return new BolagsverketClient(properties, template, new Base64RequestProviderImpl());
+    }
+
+    private CloseableHttpClient getCloseableHttpClient(ClientProperties properties) {
+        return HttpClients.custom()
+                .setSSLSocketFactory(new SSLConnectionSocketFactory(sslContext(properties)))
+                .addInterceptorFirst(new HttpComponentsMessageSender.RemoveSoapHeadersInterceptor())
+                .build();
+    }
+
+    private SSLContext sslContext(ClientProperties properties) {
+        try {
+            final ClientProperties.KeyStoreProperties keyProperties = properties.getKeystore();
+            KeyStore keyStore = KeyStoreProvider.from(keyProperties).getKeyStore();
+            return SSLContexts.custom()
+                    .loadKeyMaterial(keyStore, keyProperties.getKeyPassword().toCharArray())
+                    .build();
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     @Bean
