@@ -26,6 +26,7 @@ class RawRequestProviderImpl implements RequestProvider {
     @Override
     public Optional<String> getRequest(String identifier) {
         Objects.requireNonNull(identifier);
+        log.debug("Building XML request for identifier '{}'.", identifier);
         String serializedQuery = serializeQuery(getForetagsfraga(identifier));
         return null != serializedQuery
                 ? Optional.of(serializedQuery)

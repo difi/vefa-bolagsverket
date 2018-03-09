@@ -18,8 +18,10 @@ public class IdentifierValidatorServiceImpl implements ValidatorService {
     public boolean validate(String identifier) {
         String idWithoutDashes = identifier.replaceAll("\\-", "");
         if (!pattern.matcher(idWithoutDashes).matches()) {
+            log.debug("Regex validation failed for identifier '{}'.", identifier);
             return false;
         }
+        log.debug("Performing Luhn algorithm validation.");
         int sum = 0;
         for (int i = 0; i < 10; i++) {
             int t = Integer.valueOf(idWithoutDashes.substring(i, i + 1)) * weights[i];

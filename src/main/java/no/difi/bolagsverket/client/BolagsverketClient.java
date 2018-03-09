@@ -30,10 +30,11 @@ public class BolagsverketClient {
         request.setUserId(properties.getUserId());
         Optional<String> xmlQuery = requestProvider.getRequest(organizationNumber);
         if (!xmlQuery.isPresent()) {
+            log.debug("Failed to create request.");
             return Optional.empty();
         }
         request.setXmlFraga(xmlQuery.get());
-        log.info("Getting response.");
+        log.info("Requesting information from Bolagsverket for identifier '{}'.", organizationNumber);
         return Optional.of((GetProduktResponse) template.marshalSendAndReceive(request));
     }
 
