@@ -12,10 +12,12 @@ public class Base64RequestProviderImpl implements RequestProvider {
     @Override
     public Optional<String> getRequest(String identifier) {
         Objects.requireNonNull(identifier);
+        log.debug("Building XML request for identifier '{}'.", identifier);
         RawRequestProviderImpl rawProvider = new RawRequestProviderImpl();
         Optional<String> rawRequest = rawProvider.getRequest(identifier);
         if (rawRequest.isPresent()) {
             String encodedRequest = Base64.getEncoder().encodeToString(rawRequest.get().getBytes());
+            log.debug("Encoded request: {}", encodedRequest);
             return Optional.ofNullable(encodedRequest).filter(s -> !s.isEmpty());
         }
         log.debug("Request generation failed for identifier '{}'.", identifier);
