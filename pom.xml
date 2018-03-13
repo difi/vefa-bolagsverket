@@ -126,16 +126,16 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>generate-from-xsd</id>
+                        <id>generate-from-request-xsd</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <schemaLanguage>XMLSCHEMA</schemaLanguage>
-                            <schemaDirectory>${basedir}/src/main/resources/xsd/foretagsinformation</schemaDirectory>
-                            <generatePackage>no.difi.bolagsverket.schema</generatePackage>
-                            <generateDirectory>${project.build.directory}/generated-sources/xjc-xsd</generateDirectory>
+                            <schemaDirectory>${basedir}/src/main/resources/request/foretagsinformation</schemaDirectory>
+                            <generatePackage>no.difi.bolagsverket.request.schema</generatePackage>
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc-request</generateDirectory>
                             <removeOldOutput>true</removeOldOutput>
                             <args>
                                 <arg>-Xfluent-builder</arg>

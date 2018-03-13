@@ -62,8 +62,10 @@ public class BolagsverketValidatorServiceImplTest {
     @Test
     public void testValidate_idValidationPassesAndClientReturnsResponse_resultShouldBeTrue() {
         when(identifierValidatorMock.validate(anyString())).thenReturn(true);
-        when(clientMock.getProdukt(anyString())).thenReturn(Optional.of(mock(GetProduktResponse.class)));
-        assertTrue(target.validate("invalidId"));
+        GetProduktResponse responseMock = mock(GetProduktResponse.class);
+        when(responseMock.getGetProduktReturn()).thenReturn("someString");
+        when(clientMock.getProdukt(anyString())).thenReturn(Optional.of(responseMock));
+        assertTrue(target.validate("validId"));
     }
 
 }

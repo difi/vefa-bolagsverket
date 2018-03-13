@@ -1,6 +1,6 @@
 package no.difi.bolagsverket.request;
 
-import no.difi.bolagsverket.schema.Foretagsfraga;
+import no.difi.bolagsverket.request.schema.Foretagsfraga;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

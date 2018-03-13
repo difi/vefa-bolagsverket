@@ -28,6 +28,15 @@ public class BolagsverketValidatorServiceImpl implements ValidatorService {
         }
 
         Optional<GetProduktResponse> clientResponse = client.getProdukt(identifier);
-        return clientResponse.isPresent();
+        return clientResponse.isPresent() && validate(clientResponse.get());
     }
+
+    private boolean validate(GetProduktResponse response) {
+        String encodedResult = response.getGetProduktReturn();
+        if (null == encodedResult || encodedResult.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
 }

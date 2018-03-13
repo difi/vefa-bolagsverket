@@ -1,9 +1,9 @@
 package no.difi.bolagsverket.request;
 
 import lombok.extern.slf4j.Slf4j;
-import no.difi.bolagsverket.schema.Foretagsfraga;
-import no.difi.bolagsverket.schema.IdType;
-import no.difi.bolagsverket.schema.InformationshuvudType;
+import no.difi.bolagsverket.request.schema.Foretagsfraga;
+import no.difi.bolagsverket.request.schema.IdType;
+import no.difi.bolagsverket.request.schema.InformationshuvudType;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
