@@ -19,6 +19,7 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 
 import javax.net.ssl.SSLContext;
+import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 
 @Slf4j
@@ -61,8 +62,10 @@ public class ClientConfig {
             return SSLContexts.custom()
                     .loadKeyMaterial(keyStore, keyProperties.getKeyPassword().toCharArray())
                     .build();
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
+        } catch (NullPointerException e) {
+            throw new IllegalStateException("Keystore missing.", e);
+        } catch (GeneralSecurityException e) {
+            throw new IllegalStateException("Could not load keystore", e);
         }
     }
 
