@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bve="http://www.bolagsverket.se/schemas/common" xmlns="http://www.bolagsverket.se/schemas/foretagsinformation/foretagsfraga_200" targetNamespace="http://www.bolagsverket.se/schemas/foretagsinformation/foretagsfraga_200" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bve="http://www.bolagsverket.se/schemas/common" xmlns="http://www.bolagsverket.se/schemas/foretagsinformation/foretagsfraga" targetNamespace="http://www.bolagsverket.se/schemas/foretagsinformation/foretagsfraga" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.bolagsverket.se/schemas/common" schemaLocation="../common/Bolagsverket_1.1.xsd"/>
 	<xs:element name="Foretagsfraga">
 		<xs:complexType>
@@ -19,15 +19,12 @@
 									</xs:choice>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="Postort" type="xs:string" minOccurs="0"/>
-							<xs:element name="ForetagsForm" type="xs:string" minOccurs="0"/>
-							<xs:element name="AccentfriSokning" type="xs:boolean" minOccurs="0"/>
 						</xs:sequence>
 						<xs:attribute name="version" type="xs:string" use="required"/>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
-			<xs:attribute name="SchemaVersion" type="xs:string" use="required" fixed="2.00"/>
+			<xs:attribute name="SchemaVersion" type="xs:string" use="required" fixed="1.1"/>
 			<xs:attribute name="utgar" type="xs:date" use="optional"/>
 		</xs:complexType>
 	</xs:element>
