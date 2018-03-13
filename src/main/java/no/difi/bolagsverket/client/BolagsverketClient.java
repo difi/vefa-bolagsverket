@@ -35,7 +35,7 @@ public class BolagsverketClient {
         }
         request.setXmlFraga(xmlQuery.get());
         log.info("Requesting information from Bolagsverket for identifier '{}'.", organizationNumber);
-        return Optional.of((GetProduktResponse) template.marshalSendAndReceive(request));
+        return Optional.ofNullable((GetProduktResponse) template.marshalSendAndReceive(request));
     }
 
 }

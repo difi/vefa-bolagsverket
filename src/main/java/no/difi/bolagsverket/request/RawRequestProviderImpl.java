@@ -30,9 +30,7 @@ class RawRequestProviderImpl implements RequestProvider {
         log.debug("Building xmlFraga for identifier '{}'.", identifier);
         String serializedQuery = serializeQuery(getForetagsfraga(identifier));
         log.debug(serializedQuery);
-        return null != serializedQuery
-                ? Optional.of(serializedQuery)
-                : Optional.empty();
+        return Optional.ofNullable(serializedQuery);
     }
 
     private String serializeQuery(Foretagsfraga query) {

@@ -2,8 +2,15 @@ package no.difi.bolagsverket.service;
 
 import lombok.extern.slf4j.Slf4j;
 import no.difi.bolagsverket.client.BolagsverketClient;
+import no.difi.bolagsverket.response.schema.Foretagsinformation;
+import no.difi.bolagsverket.response.schema.InformationshuvudType;
 import no.difi.bolagsverket.xml.GetProduktResponse;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
+import java.util.Base64;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -36,7 +43,23 @@ public class BolagsverketValidatorServiceImpl implements ValidatorService {
         if (null == encodedResult || encodedResult.isEmpty()) {
             return false;
         }
-        return true;
+        String decoded = new String(Base64.getDecoder().decode(encodedResult));
+        Foretagsinformation businessInfo = unmarshalForetagsinformation(decoded);
+        InformationshuvudType.SvarsInformation answerInfo
+                = (null != businessInfo)
+                ? businessInfo.getInformationshuvud().getSvarsInformation()
+                : null;
+        return (null != answerInfo) && answerInfo.getKod() == 0;
     }
 
+    private Foretagsinformation unmarshalForetagsinformation(String decoded) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Foretagsinformation.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            return (Foretagsinformation) unmarshaller.unmarshal(new StringReader(decoded));
+        } catch (JAXBException e) {
+            log.error("Response decoding failed.", e);
+            return null;
+        }
+    }
 }
