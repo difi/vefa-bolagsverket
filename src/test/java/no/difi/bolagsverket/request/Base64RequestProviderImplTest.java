@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 public class Base64RequestProviderImplTest {
 
     private Base64RequestProviderImpl target;
-    private final String BOLAGSVERKET_IDENTIFIER = "2021005489";
+    private static final String BOLAGSVERKET_IDENTIFIER = "2021005489";
 
     @Before
     public void setUp() {
