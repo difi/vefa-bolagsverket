@@ -10,7 +10,7 @@ public class KeyStoreProvider {
 
     private final KeyStore keyStore;
 
-    public KeyStoreProvider(KeyStore keyStore) {
+    private KeyStoreProvider(KeyStore keyStore) {
         this.keyStore = Objects.requireNonNull(keyStore);
     }
 
