@@ -149,6 +149,20 @@
                             </plugins>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>generate-from-response-xsd</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaLanguage>XMLSCHEMA</schemaLanguage>
+                            <schemaDirectory>${basedir}/src/main/resources/response/foretagsinformation</schemaDirectory>
+                            <generatePackage>no.difi.bolagsverket.response.schema</generatePackage>
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc-response</generateDirectory>
+                            <removeOldOutput>true</removeOldOutput>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 2005-10-13 Bolagsverket_1.0.xsd Version 1.0  -->
+<!-- 2006-10-02 Bolagsverket_1.1.xsd Version 1.0, anpassning, placering i publik namnrymd  -->
+<xs:schema xmlns="http://www.bolagsverket.se/schemas/common/objektstatus/objektstatus_200" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.bolagsverket.se/schemas/common/objektstatus/objektstatus_200" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="StatusKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="60"/>
+			<xs:enumeration value="61"/>
+			<xs:enumeration value="62"/>
+			<xs:enumeration value="63"/>
+			<xs:enumeration value="64"/>
+			<xs:enumeration value="70"/>
+			<xs:enumeration value="71"/>
+			<xs:enumeration value="73"/>
+			<xs:enumeration value="74"/>
+			<xs:enumeration value="75"/>
+			<xs:enumeration value="76"/>
+			<xs:enumeration value="77"/>
+			<xs:enumeration value="78"/>
+			<xs:enumeration value="80"/>
+			<xs:enumeration value="81"/>
+			<xs:enumeration value="82"/>
+			<xs:enumeration value="90"/>
+			<xs:enumeration value="91"/>
+			<xs:enumeration value="99"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StatusTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Ackordsförhandling inledd"/>
+			<xs:enumeration value="Ackordsförhanling upphör"/>
+			<xs:enumeration value="Ackordsförhandling upphävd av rätt"/>
+			<xs:enumeration value="Konkurs inledd"/>
+			<xs:enumeration value="Konkurs avslutad"/>
+			<xs:enumeration value="Konkurs avslutad med överskott"/>
+			<xs:enumeration value="Konkurs upphävd av rätt"/>
+			<xs:enumeration value="Konkurs fortsätter"/>
+			<xs:enumeration value="Likvidation avslutad"/>
+			<xs:enumeration value="Likvidation beslutad"/>
+			<xs:enumeration value="Likvidation fortsätter"/>
+			<xs:enumeration value="Likvidation upphör, verksamheten återupptas"/>
+			<xs:enumeration value="Likvidation upphävd av rätt"/>
+			<xs:enumeration value="Bolaget avfört enl 13 kap 18 § ab. lagen"/>
+			<xs:enumeration value="Bolaget är avfört"/>
+			<xs:enumeration value="Fusion inledd"/>
+			<xs:enumeration value="Fusion avslutad"/>
+			<xs:enumeration value="Fusion tillåten"/>
+			<xs:enumeration value="Fusion pågår"/>
+			<xs:enumeration value="Avförd enligt 17 § 2 st Handelsregisterlagen"/>
+			<xs:enumeration value="Avförd enligt 11 kap 18 § lag om ek.föreningar"/>
+			<xs:enumeration value="Avregistrerad"/>
+			<xs:enumeration value="Avregistrerad p g a  ny innehavare"/>
+			<xs:enumeration value="Avförd, p g a fusion med utländskt företag"/>
+			<xs:enumeration value="Avförd pga utländskt företags likvidation/konkurs"/>
+			<xs:enumeration value="Avförd, verksamheten har upphört"/>
+			<xs:enumeration value="Avförd, filialen saknar verkställande direktör"/>
+			<xs:enumeration value="Avförd, enligt domstolsbeslut"/>
+			<xs:enumeration value="Avförd, årsredovisning saknas"/>
+			<xs:enumeration value="Bolaget avfört på egen begäran"/>
+			<xs:enumeration value="Bolaget avfört av Bolagsverket"/>
+			<xs:enumeration value="Avförd"/>
+			<xs:enumeration value="Avförd, omregistrerat till bankaktiebolag"/>
+			<xs:enumeration value="Beslut om ombildning"/>
+			<xs:enumeration value="Tillstånd till ombildning"/>
+			<xs:enumeration value="Avregistrerad pga ombildning"/>
+			<xs:enumeration value="Ombildning förfallen"/>
+			<xs:enumeration value="Företagsrekonstruktion inledd"/>
+			<xs:enumeration value="Företagsrekonstruktion upphörd"/>
+			<xs:enumeration value="Företagsrekonstruktion upphävd av rätt"/>
+			<xs:enumeration value="Delning pågår"/>
+			<xs:enumeration value="Upplöst genom delning"/>
+			<xs:enumeration value="Övertagande av bolag pågår"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	<xs:complexType name="StatusType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="datum" type="xs:dateTime"/>
+				<xs:attribute name="kod" type="StatusKodType"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

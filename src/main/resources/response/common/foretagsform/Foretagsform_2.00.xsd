@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 2005-10-13 Bolagsverket_1.0.xsd Version 1.0  -->
+<!-- 2006-10-02 Bolagsverket_1.1.xsd Version 1.0, anpassning, placering i publik namnrymd  -->
+<xs:schema xmlns="http://www.bolagsverket.se/schemas/common/foretagsform/foretagsform_200" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.bolagsverket.se/schemas/common/foretagsform/foretagsform_200" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="ForetagsformTextType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="aktiebolag"/>
+			<xs:enumeration value="bankaktiebolag"/>
+			<xs:enumeration value="bostadsförening"/>
+			<xs:enumeration value="bostadsrättsförening"/>
+			<xs:enumeration value="ekonomisk förening"/>
+			<xs:enumeration value="enkla bolag"/>
+			<xs:enumeration value="enskild näringsidkare"/>
+			<xs:enumeration value="europabolag"/>
+			<xs:enumeration value="europeisk ekonomisk intressegruppering"/>
+			<xs:enumeration value="filial"/>
+			<xs:enumeration value="försäkringsaktiebolag"/>
+			<xs:enumeration value="handelsbolag"/>
+			<xs:enumeration value="ideell förening som bedriver näring"/>
+			<xs:enumeration value="kommanditbolag"/>
+			<xs:enumeration value="kooperativ hyresrättsförening"/>
+			<xs:enumeration value="medlemsbank"/>
+			<xs:enumeration value="sambruksförening"/>
+			<xs:enumeration value="sparbank"/>
+			<xs:enumeration value="stiftelse som bedriver näring"/>
+			<xs:enumeration value="utländsk banks filial"/>
+			<xs:enumeration value="ömsesidigt försäkringsbolag"/>
+			<xs:enumeration value="europakooperativ"/>
+			<xs:enumeration value="trossamfund"/>	
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ForetagsformKodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ab"/>
+			<xs:enumeration value="bab"/>
+			<xs:enumeration value="bf"/>
+			<xs:enumeration value="brf"/>
+			<xs:enumeration value="ek"/>
+			<xs:enumeration value="eb"/>
+			<xs:enumeration value="e"/>
+			<xs:enumeration value="se"/>
+			<xs:enumeration value="eeig"/>
+			<xs:enumeration value="fl"/>
+			<xs:enumeration value="fab"/>
+			<xs:enumeration value="hb"/>
+			<xs:enumeration value="i"/>
+			<xs:enumeration value="kb"/>
+			<xs:enumeration value="khf"/>
+			<xs:enumeration value="mb"/>
+			<xs:enumeration value="sf"/>
+			<xs:enumeration value="sb"/>
+			<xs:enumeration value="s"/>
+			<xs:enumeration value="bfl"/>
+			<xs:enumeration value="ofb"/>
+			<xs:enumeration value="sce"/>
+			<xs:enumeration value="tsf"/>	
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attributeGroup name="ForetagsformAttribute">
+		<xs:attribute name="typ" type="ForetagsformTextType" use="optional"/>
+		<xs:attribute name="typkod" type="ForetagsformKodType" use="optional"/>
+	</xs:attributeGroup>
+	<xs:complexType name="ForetagsformType">
+		<xs:simpleContent>
+			<xs:extension base="ForetagsformTextType"/>
+		</xs:simpleContent>
+	</xs:complexType>	
+</xs:schema>
