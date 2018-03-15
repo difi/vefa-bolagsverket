@@ -80,6 +80,14 @@
                     <artifactId>cobertura-maven-plugin</artifactId>
                     <version>${cobertura.plugin.version}</version>
                     <configuration>
+                        <instrumentation>
+                            <excludes>
+                                <exclude>no/difi/bolagsverket/request/schema/*.class</exclude>
+                                <exclude>no/difi/bolagsverket/response/schema/*.class</exclude>
+                                <exclude>no/difi/bolagsverket/xml/*.class</exclude>
+                                <exclude>com/kscs/util/jaxb/*.class</exclude>
+                            </excludes>
+                        </instrumentation>
                         <formats>
                             <format>xml</format>
                             <format>html</format>
