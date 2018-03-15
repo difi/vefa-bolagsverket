@@ -182,6 +182,9 @@
                 <version>${dockerfile.maven.plugin.version}</version>
                 <configuration>
                     <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                    <buildArgs>
+                        <jarPath>target/${project.build.finalName}.jar</jarPath>>
+                    </buildArgs>
                     <skip>false</skip>
                 </configuration>
                 <executions>
@@ -191,6 +194,16 @@
                         <goals>
                             <goal>build</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>tag-version</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <tag>${project.version}</tag>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
