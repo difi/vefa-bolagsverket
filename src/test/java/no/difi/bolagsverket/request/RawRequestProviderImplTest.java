@@ -49,7 +49,7 @@ public class RawRequestProviderImplTest {
     private boolean validateXml(String xml) {
         try {
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            File schemaFile = new ClassPathResource("/request/foretagsinformation/Foretagsfraga_1.1.xsd").getFile();
+            File schemaFile = new ClassPathResource("/request/foretagsinformation/ForetagsFraga_1.1.xsd").getFile();
             Schema schema = schemaFactory.newSchema(schemaFile);
             Validator validator = schema.newValidator();
             Source xmlSource = new StreamSource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
