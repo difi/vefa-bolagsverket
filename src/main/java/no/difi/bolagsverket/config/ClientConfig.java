@@ -19,6 +19,7 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 
 import javax.net.ssl.SSLContext;
+import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 
@@ -57,15 +58,19 @@ public class ClientConfig {
 
     private SSLContext sslContext(ClientProperties properties) {
         try {
-            final ClientProperties.KeyStoreProperties keyProperties = properties.getKeystore();
+            ClientProperties.KeyStoreProperties keyProperties = properties.getKeystore();
             KeyStore keyStore = KeyStoreProvider.from(keyProperties).getKeyStore();
+            ClientProperties.KeyStoreProperties trustProperties = properties.getTruststore();
             return SSLContexts.custom()
                     .loadKeyMaterial(keyStore, keyProperties.getKeyPassword().toCharArray())
+                    .loadTrustMaterial(properties.getTruststore().getPath().getFile(), trustProperties.getPassword().toCharArray())
                     .build();
         } catch (NullPointerException e) {
             throw new IllegalStateException("Keystore missing.", e);
         } catch (GeneralSecurityException e) {
-            throw new IllegalStateException("Could not load keystore", e);
+            throw new IllegalStateException("Could not load keystore.", e);
+        } catch (IOException e) {
+            throw new IllegalStateException("Could not load truststore.", e);
         }
     }
 
