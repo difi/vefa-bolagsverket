@@ -77,11 +77,8 @@ public class ClientConfig {
     @Bean
     public ValidatorService bolagsverketValidator(ClientProperties properties, BolagsverketClient client) {
         ClientProperties.ValidationProperties validationProperties = properties.getValidation();
-        if (!validationProperties.isEnabled()) {
-            return s -> true;
-        }
         ValidatorService service;
-        if (validationProperties.isCallingBolagsverket()) {
+        if (validationProperties.isCallXmlService()) {
             service = new BolagsverketValidatorServiceImpl(client, new IdentifierValidatorServiceImpl());
         } else {
             service = new IdentifierValidatorServiceImpl();
