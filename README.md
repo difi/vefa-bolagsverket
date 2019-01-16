@@ -17,8 +17,7 @@ Endepunkt | Beskriving
 Property | Beskriving | Default
 -------- | ---------- | -------
 bolagsverket.serviceEndpoint | Endepunkt, ref. ovanfor | -
-bolagsverket.validation.enabled | true => Organisasjonsnummeret vert validert. false => Inga validering | true
-bolagsverket.validation.callingBolagsverket	| true => XML-tenestene til Bolagsverket vert kontakta etter grunnleggande validering. false => Grunnleggande ID-validering som spesifisert ovanfor. | true
+bolagsverket.validation.callXmlService | true => XML-tenestene til Bolagsverket vert kontakta etter grunnleggande validering. false => Grunnleggande ID-validering som spesifisert ovanfor. | true
 bolagsverket.keystore.type | Keystore-type | JKS
 bolagsverket.keystore.path | Sti til keystore-fil | -
 bolagsverket.keystore.password | passord | -

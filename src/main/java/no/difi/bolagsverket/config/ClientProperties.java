@@ -45,8 +45,6 @@ public class ClientProperties {
     @Data
     public static class ValidationProperties {
         @NotNull
-        private boolean enabled;
-        @NotNull
-        private boolean callingBolagsverket;
+        private boolean callXmlService;
     }
 }

@@ -57,7 +57,7 @@ public class ClientConfig {
 
     private SSLContext sslContext(ClientProperties properties) {
         try {
-            final ClientProperties.KeyStoreProperties keyProperties = properties.getKeystore();
+            ClientProperties.KeyStoreProperties keyProperties = properties.getKeystore();
             KeyStore keyStore = KeyStoreProvider.from(keyProperties).getKeyStore();
             return SSLContexts.custom()
                     .loadKeyMaterial(keyStore, keyProperties.getKeyPassword().toCharArray())
@@ -72,11 +72,8 @@ public class ClientConfig {
     @Bean
     public ValidatorService bolagsverketValidator(ClientProperties properties, BolagsverketClient client) {
         ClientProperties.ValidationProperties validationProperties = properties.getValidation();
-        if (!validationProperties.isEnabled()) {
-            return s -> true;
-        }
         ValidatorService service;
-        if (validationProperties.isCallingBolagsverket()) {
+        if (validationProperties.isCallXmlService()) {
             service = new BolagsverketValidatorServiceImpl(client, new IdentifierValidatorServiceImpl());
         } else {
             service = new IdentifierValidatorServiceImpl();
