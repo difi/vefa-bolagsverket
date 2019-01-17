@@ -35,7 +35,8 @@ Brukarar av bolagsverket-client gjer oppslag mot endepunktet, utvida med eit ti-
 
 **Respons**
 
-Type oppslag | HTTP-statuskode | Døme
------------- | --------------- | -----
-Eksisterande svensk organisasjonsnummer. | 204 | ~/identifier/5566618020
-Alt anna. | 404 | ~/identifier/2021005489
+Type oppslag | HTTP-statuskode | Respons | Døme
+------------ | --------------- |-------- |-----
+Registrert svensk organisasjon. | 200 | JSON | ~/identifier/5566618020
+Gyldig svensk organisasjonsnummer. | 204 | - | ~/identifier/2021005489
+Ugyldig svensk organisasjonsnummer. | 404 | - | ~/identifier/2021005490
