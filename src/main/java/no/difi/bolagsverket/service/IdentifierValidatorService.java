@@ -1,5 +1,5 @@
 package no.difi.bolagsverket.service;
 
-public interface ValidatorService {
+public interface IdentifierValidatorService {
     boolean validate(String identifier);
 }

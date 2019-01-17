@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import no.difi.bolagsverket.request.schema.Foretagsfraga;
 import no.difi.bolagsverket.request.schema.IdType;
 import no.difi.bolagsverket.request.schema.InformationshuvudType;
+import org.springframework.stereotype.Component;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -18,6 +19,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
+@Component
 class RawRequestProviderImpl implements RequestProvider {
 
     private static final String PRODUKT_VERSION = "2.00";
@@ -27,7 +29,7 @@ class RawRequestProviderImpl implements RequestProvider {
     @Override
     public Optional<String> getRequest(String identifier) {
         Objects.requireNonNull(identifier);
-        log.debug("Building xmlFraga for identifier '{}'.", identifier);
+        log.info("Building xmlFraga for identifier '{}'.", identifier);
         String serializedQuery = serializeQuery(getForetagsfraga(identifier));
         log.debug(serializedQuery);
         return Optional.ofNullable(serializedQuery);
