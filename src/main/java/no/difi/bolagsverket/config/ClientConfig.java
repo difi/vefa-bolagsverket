@@ -2,11 +2,9 @@ package no.difi.bolagsverket.config;
 
 import lombok.extern.slf4j.Slf4j;
 import no.difi.bolagsverket.client.BolagsverketClient;
+import no.difi.bolagsverket.client.BolagsverketClientImpl;
 import no.difi.bolagsverket.request.Base64RequestProviderImpl;
 import no.difi.bolagsverket.security.KeyStoreProvider;
-import no.difi.bolagsverket.service.BolagsverketValidatorServiceImpl;
-import no.difi.bolagsverket.service.IdentifierValidatorServiceImpl;
-import no.difi.bolagsverket.service.ValidatorService;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -19,6 +17,7 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 
 import javax.net.ssl.SSLContext;
+import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 
@@ -35,7 +34,7 @@ public class ClientConfig {
     }
 
     @Bean
-    public BolagsverketClient bolagsverketClient(ClientProperties properties, Jaxb2Marshaller marshaller) {
+    public BolagsverketClient bolagsverketClient(ClientProperties properties, Base64RequestProviderImpl base64RequestProvider, Jaxb2Marshaller marshaller) {
         WebServiceTemplate template = new WebServiceTemplate();
 
         CloseableHttpClient httpClient = getCloseableHttpClient(properties);
@@ -45,7 +44,7 @@ public class ClientConfig {
         template.setDefaultUri(properties.getServiceEndpoint().toString());
         template.setMarshaller(marshaller);
         template.setUnmarshaller(marshaller);
-        return new BolagsverketClient(properties, template, new Base64RequestProviderImpl());
+        return new BolagsverketClientImpl(properties, template, base64RequestProvider);
     }
 
     private CloseableHttpClient getCloseableHttpClient(ClientProperties properties) {
@@ -59,26 +58,18 @@ public class ClientConfig {
         try {
             ClientProperties.KeyStoreProperties keyProperties = properties.getKeystore();
             KeyStore keyStore = KeyStoreProvider.from(keyProperties).getKeyStore();
+            ClientProperties.KeyStoreProperties trustProperties = properties.getTruststore();
             return SSLContexts.custom()
                     .loadKeyMaterial(keyStore, keyProperties.getKeyPassword().toCharArray())
+                    .loadTrustMaterial(properties.getTruststore().getPath().getFile(), trustProperties.getPassword().toCharArray())
                     .build();
         } catch (NullPointerException e) {
             throw new IllegalStateException("Keystore missing.", e);
         } catch (GeneralSecurityException e) {
-            throw new IllegalStateException("Could not load keystore", e);
+            throw new IllegalStateException("Could not load keystore.", e);
+        } catch (IOException e) {
+            throw new IllegalStateException("Could not load truststore.", e);
         }
-    }
-
-    @Bean
-    public ValidatorService bolagsverketValidator(ClientProperties properties, BolagsverketClient client) {
-        ClientProperties.ValidationProperties validationProperties = properties.getValidation();
-        ValidatorService service;
-        if (validationProperties.isCallXmlService()) {
-            service = new BolagsverketValidatorServiceImpl(client, new IdentifierValidatorServiceImpl());
-        } else {
-            service = new IdentifierValidatorServiceImpl();
-        }
-        return service;
     }
 
 }

@@ -17,7 +17,7 @@ import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BolagsverketClientTest {
+public class BolagsverketClientImplTest {
 
     private BolagsverketClient target;
     @Mock
@@ -31,22 +31,22 @@ public class BolagsverketClientTest {
     public void setUp() {
         when(propertiesMock.getCertId()).thenReturn("validCertId");
         when(propertiesMock.getUserId()).thenReturn("validUserId");
-        target = new BolagsverketClient(propertiesMock, templateMock, requestProviderMock);
+        target = new BolagsverketClientImpl(propertiesMock, templateMock, requestProviderMock);
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructor_propertiesIsNull_shouldThrow() {
-        target = new BolagsverketClient(null, templateMock, requestProviderMock);
+        target = new BolagsverketClientImpl(null, templateMock, requestProviderMock);
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructor_templateIsNull_shouldThrow() {
-        target = new BolagsverketClient(propertiesMock, null, requestProviderMock);
+        target = new BolagsverketClientImpl(propertiesMock, null, requestProviderMock);
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructor_requestProviderIsNull_shouldThrow() {
-        target = new BolagsverketClient(propertiesMock, templateMock, null);
+        target = new BolagsverketClientImpl(propertiesMock, templateMock, null);
     }
 
     @Test(expected = NullPointerException.class)
