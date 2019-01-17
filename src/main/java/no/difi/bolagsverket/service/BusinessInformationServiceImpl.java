@@ -1,5 +1,6 @@
 package no.difi.bolagsverket.service;
 
+import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 import no.difi.bolagsverket.client.BolagsverketClient;
@@ -42,11 +43,13 @@ public class BusinessInformationServiceImpl implements BusinessInformationServic
         String encodedResult = clientResponse.get().getGetProduktReturn();
         if (!Strings.isNullOrEmpty(encodedResult)) {
             log.info("Response received from Bolagsverket.");
-            log.debug("Encoded response:", encodedResult);
-            String decoded = new String(Base64.getDecoder().decode(encodedResult));
+            log.debug("Encoded response: {}", encodedResult);
+            String decoded = new String(Base64.getDecoder().decode(encodedResult), Charsets.ISO_8859_1);
+            log.debug("Decoded response: {}", decoded);
             Foretagsinformation businessInfo = unmarshalForetagsinformation(decoded);
             List<Foretagsinformation.Foretag> companies = businessInfo.getForetag();
             if (null != companies && !companies.isEmpty()) {
+                log.info("Retrieving business information from response.");
                 businessName = companies.get(0).getForetagshuvud().getFirma().getNamn();
             }
         }
@@ -57,12 +60,12 @@ public class BusinessInformationServiceImpl implements BusinessInformationServic
 
     private Foretagsinformation unmarshalForetagsinformation(String decoded) {
         try {
-            log.info("Decoding Bolagsverket response.");
+            log.info("Unmarshalling Bolagsverket response.");
             JAXBContext context = JAXBContext.newInstance(Foretagsinformation.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             return (Foretagsinformation) unmarshaller.unmarshal(new StringReader(decoded));
         } catch (JAXBException e) {
-            log.error("Response decoding failed.", e);
+            log.error("Response unmarshalling failed.", e);
             return null;
         }
     }
