@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Optional;
 
@@ -30,8 +30,8 @@ public class Base64RequestProviderImplTest {
 
     @Test
     public void getRequest_RawRequestNotProvided_EncodedRequestShouldNotBePresent() {
-     when(rawRequestProviderMock.getRequest(anyString())).thenReturn(Optional.empty());
-     assertFalse(target.getRequest(BOLAGSVERKET_IDENTIFIER).isPresent());
+        when(rawRequestProviderMock.getRequest(anyString())).thenReturn(Optional.empty());
+        assertFalse(target.getRequest(BOLAGSVERKET_IDENTIFIER).isPresent());
     }
 
     @Test
