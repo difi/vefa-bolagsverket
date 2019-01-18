@@ -1,18 +1,17 @@
 package no.difi.bolagsverket.response;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import no.difi.bolagsverket.response.dto.BusinessInformationDto;
+import lombok.ToString;
 
 /**
- * Internal response object.
+ * Response Object. *
+ * <p>Subset of response from Bolagsverket's XML services.</p> *
  */
-@Data
+@Getter
+@ToString
 @RequiredArgsConstructor
 public class BusinessInformation {
 
-    @NonNull
-    private final boolean validIdentifier;
-    private final BusinessInformationDto dto;
+    private final String name;
 }

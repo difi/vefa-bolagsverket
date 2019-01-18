@@ -5,7 +5,6 @@ import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 import no.difi.bolagsverket.client.BolagsverketClient;
 import no.difi.bolagsverket.response.BusinessInformation;
-import no.difi.bolagsverket.response.dto.BusinessInformationDto;
 import no.difi.bolagsverket.response.schema.Foretagsinformation;
 import no.difi.bolagsverket.xml.GetProduktResponse;
 import org.springframework.stereotype.Service;
@@ -23,26 +22,30 @@ import java.util.Optional;
 public class BusinessInformationServiceImpl implements BusinessInformationService {
 
     private final BolagsverketClient client;
-    private final IdentifierValidatorService identifierValidator;
 
-    public BusinessInformationServiceImpl(BolagsverketClient client, IdentifierValidatorServiceImpl identifierValidator) {
+    public BusinessInformationServiceImpl(BolagsverketClient client) {
         this.client = client;
-        this.identifierValidator = identifierValidator;
     }
 
     @Override
     public BusinessInformation getBusinessInformation(String identifier) {
         log.info("Getting business information for identifier '{}'", identifier);
-        boolean isValid = identifierValidator.validate(identifier);
         Optional<GetProduktResponse> clientResponse = client.getProdukt(identifier);
-        if (!clientResponse.isPresent()) {
-            log.warn("No response received from client.");
-            return new BusinessInformation(isValid, null);
-        }
         String businessName = null;
-        String encodedResult = clientResponse.get().getGetProduktReturn();
-        if (!Strings.isNullOrEmpty(encodedResult)) {
+        if (clientResponse.isPresent()) {
             log.info("Response received from Bolagsverket.");
+            businessName = decodeClientResponse(clientResponse.get().getGetProduktReturn());
+        } else {
+            log.warn("No response received from Bolagsverket.");
+        }
+        return !Strings.isNullOrEmpty(businessName)
+                ? new BusinessInformation(businessName)
+                : null;
+    }
+
+    private String decodeClientResponse(String encodedResult) {
+        String businessName = null;
+        if (!Strings.isNullOrEmpty(encodedResult)) {
             log.debug("Encoded response: {}", encodedResult);
             String decoded = new String(Base64.getDecoder().decode(encodedResult), Charsets.ISO_8859_1);
             log.debug("Decoded response: {}", decoded);
@@ -52,10 +55,10 @@ public class BusinessInformationServiceImpl implements BusinessInformationServic
                 log.info("Retrieving business information from response.");
                 businessName = companies.get(0).getForetagshuvud().getFirma().getNamn();
             }
+        } else {
+            log.warn("Empty response received from Bolagsverket.");
         }
-        return new BusinessInformation(isValid, !Strings.isNullOrEmpty(businessName)
-                ? new BusinessInformationDto(businessName)
-                : null);
+        return businessName;
     }
 
     private Foretagsinformation unmarshalForetagsinformation(String decoded) {

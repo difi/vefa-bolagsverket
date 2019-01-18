@@ -11,7 +11,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -28,22 +29,14 @@ public class BusinessInformationServiceImplTest {
     public void getBusinessInformation_IdentifierIsNullAndNoResponseFromClient_ShouldReturnInvalidResponse() {
         when(validatorServiceMock.validate(anyString())).thenReturn(false);
         when(clientMock.getProdukt(anyString())).thenReturn(Optional.empty());
-
-        BusinessInformation result = target.getBusinessInformation("invalidIdentifier");
-
-        assertFalse(result.isValidIdentifier());
-        assertNull(result.getDto());
+        assertNull(target.getBusinessInformation("invalidIdentifier"));
     }
 
     @Test
     public void getBusinessInformation_IdentifierValid_ShouldReturnEmptyBusinessInformation() {
         when(validatorServiceMock.validate(anyString())).thenReturn(true);
         when(clientMock.getProdukt(anyString())).thenReturn(Optional.empty());
-
-        BusinessInformation result = target.getBusinessInformation("invalidIdentifier");
-
-        assertTrue(result.isValidIdentifier());
-        assertNull(result.getDto());
+        assertNull(target.getBusinessInformation("invalidIdentifier"));
     }
 
     @Test
@@ -56,6 +49,6 @@ public class BusinessInformationServiceImplTest {
 
         BusinessInformation result = target.getBusinessInformation("5566618020");
 
-        assertEquals("IFK Göteborg Fotboll AB", result.getDto().getName());
+        assertEquals("IFK Göteborg Fotboll AB", result.getName());
     }
 }

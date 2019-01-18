@@ -2,8 +2,8 @@ package no.difi.bolagsverket.api;
 
 import lombok.extern.slf4j.Slf4j;
 import no.difi.bolagsverket.response.BusinessInformation;
-import no.difi.bolagsverket.response.dto.BusinessInformationDto;
 import no.difi.bolagsverket.service.BusinessInformationService;
+import no.difi.bolagsverket.service.IdentifierValidatorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,27 +17,30 @@ import java.util.Objects;
 @Slf4j
 public class BolagsverketController {
 
+    private final IdentifierValidatorService identifierValidatorService;
     private final BusinessInformationService businessInformationService;
 
-    public BolagsverketController(BusinessInformationService businessInformationService) {
+    public BolagsverketController(IdentifierValidatorService identifierValidatorService, BusinessInformationService businessInformationService) {
+        this.identifierValidatorService = Objects.requireNonNull(identifierValidatorService);
         this.businessInformationService = Objects.requireNonNull(businessInformationService);
     }
 
     @GetMapping(value = "/identifier/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<BusinessInformationDto> lookupIdentifier(@PathVariable String id) {
-        log.info("Looking up identifier '{}'.", id);
+    public ResponseEntity<BusinessInformation> lookupIdentifier(@PathVariable String id) {
         try {
-            BusinessInformation businessInformation = businessInformationService.getBusinessInformation(id);
-            if (!businessInformation.isValidIdentifier()) {
+            log.info("Validating identifier '{}'.", id);
+            if (!identifierValidatorService.validate(id)) {
                 log.info("Invalid identifier provided.");
                 return ResponseEntity.badRequest().build();
             }
-            if (null == businessInformation.getDto()) {
-                log.info("Valid identifier provided, but no business information available in Bolagsverket.");
+            log.info("Looking up identifier '{}'.", id);
+            BusinessInformation businessInformation = businessInformationService.getBusinessInformation(id);
+            if (null == businessInformation) {
+                log.info("No business information available in Bolagsverket for the provided identifier.");
                 return ResponseEntity.notFound().build();
             }
-            log.info("Valid identifier provided, and business information retrieved from Bolagsverket.");
-            return ResponseEntity.ok(businessInformation.getDto());
+            log.info("Business information successfully retrieved from Bolagsverket.");
+            return ResponseEntity.ok(businessInformation);
         } catch (Exception e) {
             log.error("Exception occurred when looking up identifier.");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
