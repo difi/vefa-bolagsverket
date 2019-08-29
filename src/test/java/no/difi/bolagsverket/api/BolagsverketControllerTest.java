@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -31,6 +32,7 @@ public class BolagsverketControllerTest {
     private BusinessInformationService businessInformationServiceMock;
 
     @Test
+    @WithMockUser
     public void lookupIdentifier_InvalidIdentifier_ResponseShouldBeBadRequest() throws Exception {
         when(identifierValidatorServiceMock.validate(anyString())).thenReturn(false);
         mockMvc.perform(get("/identifier/Invalid")
@@ -39,6 +41,7 @@ public class BolagsverketControllerTest {
     }
 
     @Test
+    @WithMockUser
     public void lookupIdentifier_ValidIdentifierButNoInformationFoundInBolagsverket_ResponseShouldBeNotFound() throws Exception {
         when(identifierValidatorServiceMock.validate(anyString())).thenReturn(true);
         when(businessInformationServiceMock.getBusinessInformation(anyString())).thenReturn(null);
@@ -48,6 +51,7 @@ public class BolagsverketControllerTest {
     }
 
     @Test
+    @WithMockUser
     public void lookupIdentifier_ValidIdentifierAndInformationFoundInBolagsverket_ResponseShouldBeOk() throws Exception {
         when(identifierValidatorServiceMock.validate(anyString())).thenReturn(true);
         String businessName = "BusinessName";
