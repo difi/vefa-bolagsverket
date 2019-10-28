@@ -1,9 +1,9 @@
 # vefa-bolagsverket
 **Introduksjon**
 
-REST-tenesta bolagsverket-client gjer oppslag mot XML-tenestene til Bolagsverket, som er beskrivne HER, nærmare bestemt produktet "Grundpaket" (versjon 2.00).
+REST-tenesta bolagsverket-client gjer oppslag mot XML-tenestene til Bolagsverket, som er beskrivne [HER](http://bolagsverket.se/be/sok/xml), nærmare bestemt produktet "Grundpaket" (versjon 2.00).
 Klienten er utvikla som følge av behovet for å validera svenske organisasjonsnummer i ELMA. 
-Organisasjonsnummeret vert først validert i henhold til tilgjengeleg informasjon om [svenske identifikatorar](http://bolagsverket.se/be/sok/xml), inkludert verifisering mot [Luhn-algoritma](https://sv.wikipedia.org/wiki/Luhn-algoritmen). 
+Organisasjonsnummeret vert først validert i henhold til tilgjengeleg informasjon om svenske identifikatorar, inkludert verifisering mot [Luhn-algoritma](https://sv.wikipedia.org/wiki/Luhn-algoritmen). 
 Dersom denne valideringa passerar, vert det sendt ein førespurnad til Bolagsverket sine tenester.
 
 Endepunkt | Beskriving
@@ -28,6 +28,8 @@ bolagsverket.truststore.path | Sti til keystore-fil som støttar SSL-sertifikate
 bolagsverket.truststore.password | passord | -
 bolagsverket.truststore.keyAlias | Referanse til sertifikat i keystore. | -
 bolagsverket.truststore.keyPassword	| passord | -
+spring.security.user.name | Basic auth-brukarnamn | -
+spring.security.user.password | Basic auth-passord | -
 
 **Oppslag**
 
