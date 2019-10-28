@@ -9,8 +9,8 @@ Dersom denne valideringa passerar, vert det sendt ein førespurnad til Bolagsver
 Endepunkt | Beskriving
 --------- | ---------------
 ~/identifier | Oppslag på organisasjonsnummer.
-~/actuator/health | Viser helse-informasjon om tenesta.
-~/actuator/info | Viser annan informasjon om tenesta.
+~/manage/health | Viser helse-informasjon om tenesta.
+~/manage/info | Viser annan informasjon om tenesta.
 
 **Konfigurasjon**
 
