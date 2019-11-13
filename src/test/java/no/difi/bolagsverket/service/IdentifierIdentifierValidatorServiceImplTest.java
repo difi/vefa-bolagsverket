@@ -16,32 +16,37 @@ public class IdentifierIdentifierValidatorServiceImplTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void testValidate_nullArgument_shouldThrow() {
+    public void validate_NullArgument_ShouldThrow() {
         target.validate(null);
     }
 
     @Test
-    public void testValidate_emptyIdentifier_shouldFail() {
+    public void validate_EmptyIdentifier_ShouldFail() {
         assertFalse(target.validate(""));
     }
 
     @Test
-    public void testValidate_bolagsverketId_shouldSucceed() {
+    public void validate_BolagsverketId_ShouldSucceed() {
         assertTrue(target.validate("2021005489"));
     }
 
     @Test
-    public void testValidate_invalidLuhnComputation_shouldFail() {
+    public void validate_InvalidLuhnComputation_ShouldFail() {
         assertFalse(target.validate("2021005488"));
     }
 
     @Test
-    public void testValidate_validIdOnDashFormat_shouldPass() {
+    public void validate_ValidIdOnDashFormat_ShouldPass() {
         assertTrue(target.validate("202100-5489"));
     }
 
     @Test
-    public void testValidate_luhnFailOnDashFormat_shouldFail() {
+    public void validate_LuhnFailOnDashFormat_ShouldFail() {
         assertFalse(target.validate("202100-5488"));
+    }
+
+    @Test
+    public void validate_ValidIdentifierContainingSekelPrefix_ShouldSucceed() {
+        assertTrue(target.validate("194910017930"));
     }
 }

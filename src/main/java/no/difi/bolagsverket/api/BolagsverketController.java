@@ -1,6 +1,7 @@
 package no.difi.bolagsverket.api;
 
 import lombok.extern.slf4j.Slf4j;
+import no.difi.bolagsverket.model.Identifier;
 import no.difi.bolagsverket.response.BusinessInformation;
 import no.difi.bolagsverket.service.BusinessInformationService;
 import no.difi.bolagsverket.service.IdentifierValidatorService;
@@ -33,8 +34,9 @@ public class BolagsverketController {
                 log.info("Invalid identifier provided.");
                 return ResponseEntity.badRequest().build();
             }
-            log.info("Looking up identifier '{}'.", id);
-            BusinessInformation businessInformation = businessInformationService.getBusinessInformation(id);
+            Identifier identifier = Identifier.from(id);
+            log.info("Looking up identifier '{}'.", identifier);
+            BusinessInformation businessInformation = businessInformationService.getBusinessInformation(identifier);
             if (null == businessInformation) {
                 log.info("No business information available in Bolagsverket for the provided identifier.");
                 return ResponseEntity.notFound().build();

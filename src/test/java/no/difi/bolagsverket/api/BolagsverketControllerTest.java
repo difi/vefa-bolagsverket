@@ -1,5 +1,6 @@
 package no.difi.bolagsverket.api;
 
+import no.difi.bolagsverket.model.Identifier;
 import no.difi.bolagsverket.response.BusinessInformation;
 import no.difi.bolagsverket.service.BusinessInformationService;
 import no.difi.bolagsverket.service.IdentifierValidatorService;
@@ -13,6 +14,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -44,7 +46,7 @@ public class BolagsverketControllerTest {
     @WithMockUser
     public void lookupIdentifier_ValidIdentifierButNoInformationFoundInBolagsverket_ResponseShouldBeNotFound() throws Exception {
         when(identifierValidatorServiceMock.validate(anyString())).thenReturn(true);
-        when(businessInformationServiceMock.getBusinessInformation(anyString())).thenReturn(null);
+        when(businessInformationServiceMock.getBusinessInformation(any(Identifier.class))).thenReturn(null);
         mockMvc.perform(get("/identifier/2021005489")
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(status().isNotFound());
@@ -55,7 +57,7 @@ public class BolagsverketControllerTest {
     public void lookupIdentifier_ValidIdentifierAndInformationFoundInBolagsverket_ResponseShouldBeOk() throws Exception {
         when(identifierValidatorServiceMock.validate(anyString())).thenReturn(true);
         String businessName = "BusinessName";
-        when(businessInformationServiceMock.getBusinessInformation(anyString())).thenReturn(new BusinessInformation(businessName));
+        when(businessInformationServiceMock.getBusinessInformation(any(Identifier.class))).thenReturn(new BusinessInformation(businessName));
         mockMvc.perform(get("/identifier/5566618020")
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(status().isOk())

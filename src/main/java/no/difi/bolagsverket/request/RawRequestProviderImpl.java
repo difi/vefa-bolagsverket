@@ -1,6 +1,7 @@
 package no.difi.bolagsverket.request;
 
 import lombok.extern.slf4j.Slf4j;
+import no.difi.bolagsverket.model.Identifier;
 import no.difi.bolagsverket.request.schema.Foretagsfraga;
 import no.difi.bolagsverket.request.schema.IdType;
 import no.difi.bolagsverket.request.schema.InformationshuvudType;
@@ -14,6 +15,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.math.BigInteger;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 import java.util.Optional;
@@ -27,7 +29,7 @@ class RawRequestProviderImpl implements RequestProvider {
     private static final String SCHEMA_VERSION = "1.1";
 
     @Override
-    public Optional<String> getRequest(String identifier) {
+    public Optional<String> getRequest(Identifier identifier) {
         Objects.requireNonNull(identifier);
         log.info("Building xmlFraga for identifier '{}'.", identifier);
         String serializedQuery = serializeQuery(getForetagsfraga(identifier));
@@ -51,7 +53,7 @@ class RawRequestProviderImpl implements RequestProvider {
         return serializedQuery;
     }
 
-    private Foretagsfraga getForetagsfraga(String identifier) {
+    private Foretagsfraga getForetagsfraga(Identifier identifier) {
         InformationshuvudType header = getInformationshuvudType();
         Foretagsfraga.Produkt produkt = getProdukt(identifier);
         return Foretagsfraga.builder()
@@ -61,9 +63,15 @@ class RawRequestProviderImpl implements RequestProvider {
                 .build();
     }
 
-    private Foretagsfraga.Produkt getProdukt(String identifier) {
+    private Foretagsfraga.Produkt getProdukt(Identifier identifier) {
+        BigInteger century = null != identifier.getCentury()
+                ? new BigInteger(identifier.getCentury())
+                : null;
         Foretagsfraga.Produkt.Sokbegrepp queryTerm = Foretagsfraga.Produkt.Sokbegrepp.builder()
-                .withForetagsidentitet(IdType.builder().withOrganisationsnummer(identifier).build())
+                .withForetagsidentitet(IdType.builder()
+                        .withSekel(century)
+                        .withOrganisationsnummer(identifier.getOrganizationNumber())
+                        .build())
                 .build();
         return Foretagsfraga.Produkt.builder()
                 .withVersion(PRODUKT_VERSION)

@@ -4,6 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 import no.difi.bolagsverket.client.BolagsverketClient;
+import no.difi.bolagsverket.model.Identifier;
 import no.difi.bolagsverket.response.BusinessInformation;
 import no.difi.bolagsverket.response.schema.Foretagsinformation;
 import no.difi.bolagsverket.xml.GetProduktResponse;
@@ -28,7 +29,7 @@ public class BusinessInformationServiceImpl implements BusinessInformationServic
     }
 
     @Override
-    public BusinessInformation getBusinessInformation(String identifier) {
+    public BusinessInformation getBusinessInformation(Identifier identifier) {
         log.info("Getting business information for identifier '{}'", identifier);
         Optional<GetProduktResponse> clientResponse = client.getProdukt(identifier);
         String businessName = null;

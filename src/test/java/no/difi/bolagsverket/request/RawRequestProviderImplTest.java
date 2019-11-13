@@ -1,6 +1,7 @@
 package no.difi.bolagsverket.request;
 
 import lombok.extern.slf4j.Slf4j;
+import no.difi.bolagsverket.model.Identifier;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
@@ -25,7 +26,8 @@ import static org.junit.Assert.assertTrue;
 public class RawRequestProviderImplTest {
 
     private RawRequestProviderImpl target;
-    private static final String BOLAGSVERKET_IDENTIFIER = "2021005489";
+    private static final Identifier BOLAGSVERKET_IDENTIFIER = Identifier.from("2021005489");
+    private static final Identifier ENSKILD_FIRMA_IDENTIFIER = Identifier.from("194910017930");
 
     @Before
     public void setUp() {
@@ -33,13 +35,24 @@ public class RawRequestProviderImplTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void testGetRequest_organizationNumberIsNull_shouldThrow() {
+    public void getRequest_IdentifierIsNull_ShouldThrow() {
         target.getRequest(null);
     }
 
     @Test
-    public void testGetRequest_organizationNumberIsValid_shouldValidateAndReturnNonNull() {
+    public void getRequest_IdentifierIsValidOrganizationNumber_ShouldSucceed() {
         Optional<String> result = target.getRequest(BOLAGSVERKET_IDENTIFIER);
+
+        assertTrue(result.isPresent());
+        String xml = result.get();
+        assertFalse(xml.isEmpty());
+        assertTrue(validateXml(xml));
+    }
+
+    @Test
+    public void getRequest_IdentifierIsValidWithCenturyPrefix_ShouldSucceed() {
+        Optional<String> result = target.getRequest(ENSKILD_FIRMA_IDENTIFIER);
+
         assertTrue(result.isPresent());
         String xml = result.get();
         assertFalse(xml.isEmpty());
@@ -55,7 +68,7 @@ public class RawRequestProviderImplTest {
             Source xmlSource = new StreamSource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
             validator.validate(xmlSource);
         } catch (SAXException e) {
-            log.info("XML validation failed with message: {}", e.getMessage());
+            log.warn("XML validation failed with message: {}", e.getMessage());
             return false;
         } catch (IOException e) {
             throw new IllegalStateException("The request could not be validated.", e);

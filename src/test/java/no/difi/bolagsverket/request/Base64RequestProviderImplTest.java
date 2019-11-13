@@ -1,5 +1,6 @@
 package no.difi.bolagsverket.request;
 
+import no.difi.bolagsverket.model.Identifier;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -9,13 +10,13 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.anyString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class Base64RequestProviderImplTest {
 
-    private static final String BOLAGSVERKET_IDENTIFIER = "2021005489";
+    private static final Identifier BOLAGSVERKET_IDENTIFIER = Identifier.from("2021005489");
 
     @InjectMocks
     private Base64RequestProviderImpl target;
@@ -30,7 +31,7 @@ public class Base64RequestProviderImplTest {
 
     @Test
     public void getRequest_RawRequestNotProvided_EncodedRequestShouldNotBePresent() {
-        when(rawRequestProviderMock.getRequest(anyString())).thenReturn(Optional.empty());
+        when(rawRequestProviderMock.getRequest(any(Identifier.class))).thenReturn(Optional.empty());
         assertFalse(target.getRequest(BOLAGSVERKET_IDENTIFIER).isPresent());
     }
 
@@ -74,7 +75,7 @@ public class Base64RequestProviderImplTest {
                 "cmdhbmlzYXRpb25zbnVtbWVyPjIwMjEwMDU0ODk8L09yZ2FuaXNhdGlvbnNudW1tZXI+CiAgICAg" +
                 "IDwvbjE6Rm9yZXRhZ3NpZGVudGl0ZXQ+CiAgICA8L24xOlNva2JlZ3JlcHA+CiAgPC9uMTpQcm9k" +
                 "dWt0Pgo8L24xOkZvcmV0YWdzZnJhZ2E+Cg==";
-        when(rawRequestProviderMock.getRequest(anyString())).thenReturn(Optional.of(rawRequest));
+        when(rawRequestProviderMock.getRequest(any(Identifier.class))).thenReturn(Optional.of(rawRequest));
 
         Optional<String> result = target.getRequest(BOLAGSVERKET_IDENTIFIER);
 

@@ -1,6 +1,8 @@
 package no.difi.bolagsverket.request;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import no.difi.bolagsverket.model.Identifier;
 import org.springframework.stereotype.Component;
 
 import java.util.Base64;
@@ -9,16 +11,13 @@ import java.util.Optional;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class Base64RequestProviderImpl implements RequestProvider {
 
     private final RawRequestProviderImpl rawRequestProvider;
 
-    public Base64RequestProviderImpl(RawRequestProviderImpl rawRequestProvider) {
-        this.rawRequestProvider = rawRequestProvider;
-    }
-
     @Override
-    public Optional<String> getRequest(String identifier) {
+    public Optional<String> getRequest(Identifier identifier) {
         Objects.requireNonNull(identifier);
         log.info("Building XML request for identifier '{}'.", identifier);
 
