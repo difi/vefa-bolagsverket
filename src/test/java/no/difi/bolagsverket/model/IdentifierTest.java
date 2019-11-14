@@ -21,6 +21,13 @@ public class IdentifierTest {
         assertEquals("4910017930", result.getOrganizationNumber());
     }
 
+    @Test
+    public void from_ValidIdentifierWithDash_ShouldReturnIdentifier() {
+        Identifier result = Identifier.from("19-4910017930");
+        assertEquals("19", result.getCentury());
+        assertEquals("4910017930", result.getOrganizationNumber());
+    }
+
     @Test(expected = NullPointerException.class)
     public void from_NullIdentifier_ShouldThrow() {
         Identifier.from(null);

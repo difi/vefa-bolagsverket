@@ -17,11 +17,12 @@ public class Identifier {
 
     public static Identifier from(String id) {
         Objects.requireNonNull(id);
+        String idWithoutNonNumericCharacters = id.replaceAll("[^0-9]", "");
         String century = null;
-        String organizationNumber = id;
-        if (12 <= id.length()) {
-            century = id.substring(0, 2);
-            organizationNumber = id.substring(2);
+        String organizationNumber = idWithoutNonNumericCharacters;
+        if (12 <= idWithoutNonNumericCharacters.length()) {
+            century = idWithoutNonNumericCharacters.substring(0, 2);
+            organizationNumber = idWithoutNonNumericCharacters.substring(2);
         }
         Identifier identifier = new Identifier();
         identifier.century = century;
