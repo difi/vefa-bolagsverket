@@ -33,7 +33,7 @@ spring.security.user.password | Basic auth-passord | -
 
 **Oppslag**
 
-Brukarar av bolagsverket-client gjer oppslag mot endepunktet, utvida med eit ti-sifra organisasjonsnummer.
+Brukarar av bolagsverket-client gjer oppslag mot endepunktet, utvida med eit tolv-sifra organisasjonsnummer. Dei to første sifra i dette nummeret er 18, 19 eller 20 og representerar hundreåret organisasjonen vart oppretta. For aksjeselskap (aktiebolag) treng ein ikkje hundreårsprefikset, då er det nok med eit ti-sifra organisasjonsnummer.
 
 **Respons**
 
