@@ -33,12 +33,12 @@ spring.security.user.password | Basic auth-passord | -
 
 **Oppslag**
 
-Brukarar av bolagsverket-client gjer oppslag mot endepunktet, utvida med eit ti-sifra organisasjonsnummer.
+Brukarar av bolagsverket-client gjer oppslag mot endepunktet, utvida med eit tolv-sifra organisasjonsnummer. Dei to første sifra i dette nummeret er 18, 19 eller 20 og representerar hundreåret organisasjonen vart oppretta. For aksjeselskap (aktiebolag) treng ein ikkje hundreårsprefikset, då er det nok med eit ti-sifra organisasjonsnummer.
 
 **Respons**
 
 Type oppslag | HTTP-statuskode | Respons | Døme
 ------------ | --------------- |-------- |-----
 Registrert svensk organisasjon. | 200 | JSON | ~/identifier/5566618020
-Gyldig svensk organisasjonsnummer. | 204 | - | ~/identifier/2021005489
-Ugyldig svensk organisasjonsnummer. | 404 | - | ~/identifier/2021005490
+Gyldig svensk organisasjonsnummer utan match i registeret. | 404 | - | ~/identifier/2021005489
+Ugyldig svensk organisasjonsnummer. | 400 | - | ~/identifier/2021005490
