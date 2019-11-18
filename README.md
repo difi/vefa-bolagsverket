@@ -1,9 +1,9 @@
 # vefa-bolagsverket
 **Introduksjon**
 
-REST-tenesta bolagsverket-client gjer oppslag mot XML-tenestene til Bolagsverket, som er beskrivne HER, nærmare bestemt produktet "Grundpaket" (versjon 2.00).
+REST-tenesta bolagsverket-client gjer oppslag mot XML-tenestene til Bolagsverket, som er beskrivne [HER](http://bolagsverket.se/be/sok/xml), nærmare bestemt produktet "Grundpaket" (versjon 2.00).
 Klienten er utvikla som følge av behovet for å validera svenske organisasjonsnummer i ELMA. 
-Organisasjonsnummeret vert først validert i henhold til tilgjengeleg informasjon om [svenske identifikatorar](http://bolagsverket.se/be/sok/xml), inkludert verifisering mot [Luhn-algoritma](https://sv.wikipedia.org/wiki/Luhn-algoritmen). 
+Organisasjonsnummeret vert først validert i henhold til tilgjengeleg informasjon om svenske identifikatorar, inkludert verifisering mot [Luhn-algoritma](https://sv.wikipedia.org/wiki/Luhn-algoritmen). 
 Dersom denne valideringa passerar, vert det sendt ein førespurnad til Bolagsverket sine tenester.
 
 Endepunkt | Beskriving
@@ -17,8 +17,7 @@ Endepunkt | Beskriving
 Property | Beskriving | Default
 -------- | ---------- | -------
 bolagsverket.serviceEndpoint | Endepunkt, ref. ovanfor | -
-bolagsverket.validation.enabled | true => Organisasjonsnummeret vert validert. false => Inga validering | true
-bolagsverket.validation.callingBolagsverket	| true => XML-tenestene til Bolagsverket vert kontakta etter grunnleggande validering. false => Grunnleggande ID-validering som spesifisert ovanfor. | true
+bolagsverket.validation.callXmlService | true => XML-tenestene til Bolagsverket vert kontakta etter grunnleggande validering. false => Grunnleggande ID-validering som spesifisert ovanfor. | true
 bolagsverket.keystore.type | Keystore-type | JKS
 bolagsverket.keystore.path | Sti til keystore-fil | -
 bolagsverket.keystore.password | passord | -
@@ -29,6 +28,8 @@ bolagsverket.truststore.path | Sti til keystore-fil som støttar SSL-sertifikate
 bolagsverket.truststore.password | passord | -
 bolagsverket.truststore.keyAlias | Referanse til sertifikat i keystore. | -
 bolagsverket.truststore.keyPassword	| passord | -
+spring.security.user.name | Basic auth-brukarnamn | -
+spring.security.user.password | Basic auth-passord | -
 
 **Oppslag**
 
@@ -36,7 +37,8 @@ Brukarar av bolagsverket-client gjer oppslag mot endepunktet, utvida med eit ti-
 
 **Respons**
 
-Type oppslag | HTTP-statuskode | Døme
------------- | --------------- | -----
-Eksisterande svensk organisasjonsnummer. | 204 | ~/identifier/5566618020
-Alt anna. | 404 | ~/identifier/2021005489
+Type oppslag | HTTP-statuskode | Respons | Døme
+------------ | --------------- |-------- |-----
+Registrert svensk organisasjon. | 200 | JSON | ~/identifier/5566618020
+Gyldig svensk organisasjonsnummer. | 204 | - | ~/identifier/2021005489
+Ugyldig svensk organisasjonsnummer. | 404 | - | ~/identifier/2021005490
