@@ -33,12 +33,12 @@ spring.security.user.password | Basic auth-passord | -
 
 **Oppslag**
 
-Brukarar av bolagsverket-client gjer oppslag mot endepunktet, utvida med eit tolv-sifra organisasjonsnummer. Dei to første sifra i dette nummeret er 18, 19 eller 20 og representerar hundreåret organisasjonen vart oppretta. For aksjeselskap (aktiebolag) treng ein ikkje hundreårsprefikset, då er det nok med eit ti-sifra organisasjonsnummer.
+Brukarar av bolagsverket-client gjer oppslag mot endepunktet, utvida med ein numerisk identifikator på 10 (aksjeselskap/aktiebolag) eller 15 siffer (enkeltmannsføretak/enskild näringsidkare). Dei to første sifra i identifikatoren til eit enkeltmannsføretak er 18, 19 eller 20. Dette talet representerar hundreåret organisasjonen vart oppretta. Deretter kjem eit svensk personnummer på ti siffer, som identifiserar eigaren av føretaket. Til slutt kjem eit tre-sifra løpenummer (startar frå 001) for kvart føretak enkeltpersonen eig. For aksjeselskap (aktiebolag) treng ein ikkje hundreårsprefikset, då er det nok med eit ti-sifra organisasjonsnummer.
 
 **Respons**
 
-Type oppslag | HTTP-statuskode | Respons | Døme
------------- | --------------- |-------- |-----
-Registrert svensk organisasjon. | 200 | JSON | ~/identifier/5566618020
-Gyldig svensk organisasjonsnummer utan match i registeret. | 404 | - | ~/identifier/2021005489
-Ugyldig svensk organisasjonsnummer. | 400 | - | ~/identifier/2021005490
+Type oppslag | HTTP-statuskode | Respons 
+Registrert svensk aksjeselskaps-identifikator. | 200 | JSON 
+Gyldig svensk aksjeselskaps-identifikator utan match i registeret. | 404 | - 
+Ugyldig svensk aksjeselskap-identifikator. | 400 | - 
+Registrert svensk enkeltmannsføretak. | 200 | JSON 
