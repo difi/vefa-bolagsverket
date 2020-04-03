@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 @Service
 public class IdentifierValidatorServiceImpl implements IdentifierValidatorService {
 
-    private static final Pattern pattern = Pattern.compile("^(18|19|20)?([0-9]{10})([0-9]{3})?$");
+    private static final Pattern pattern = Pattern.compile("^(18|19|20)([0-9]{10})([0-9]{3})$|^([0-9]{10})$");
     private static final int[] weights = {2, 1, 2, 1, 2, 1, 2, 1, 2, 1};
 
     @Override
@@ -25,17 +25,10 @@ public class IdentifierValidatorServiceImpl implements IdentifierValidatorServic
             return false;
         }
         log.info("Performing Luhn algorithm validation.");
-        String idToCheckAgainstLuhnAlgorithm;
-        switch (idWithoutDashes.length()) {
-            case 15:
-                idToCheckAgainstLuhnAlgorithm = idWithoutDashes.substring(2, 12);
-                break;
-            case 12:
-                idToCheckAgainstLuhnAlgorithm = idWithoutDashes.substring(2);
-                break;
-            default:
-                idToCheckAgainstLuhnAlgorithm = idWithoutDashes;
-        }
+        String idToCheckAgainstLuhnAlgorithm =
+                15 == idWithoutDashes.length()
+                        ? idWithoutDashes.substring(2, 12)
+                        : idWithoutDashes;
 
         boolean luhnResult = performLuhnAlgorithmValidation(idToCheckAgainstLuhnAlgorithm);
         log.info("Validation result: {}", luhnResult);

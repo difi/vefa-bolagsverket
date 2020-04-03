@@ -46,8 +46,8 @@ public class IdentifierIdentifierValidatorServiceImplTest {
     }
 
     @Test
-    public void validate_ValidIdentifierContainingSekelPrefix_ShouldSucceed() {
-        assertTrue(target.validate("194910017930"));
+    public void validate_SoleProprietorIdentifierWithoutSerialNumber_ShouldFail() {
+        assertFalse(target.validate("194712158031"));
     }
 
     @Test
