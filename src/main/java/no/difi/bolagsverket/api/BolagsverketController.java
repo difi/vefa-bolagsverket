@@ -44,7 +44,7 @@ public class BolagsverketController {
             log.info("Business information successfully retrieved from Bolagsverket.");
             return ResponseEntity.ok(businessInformation);
         } catch (Exception e) {
-            log.error("Exception occurred when looking up identifier.");
+            log.error("Exception occurred when looking up identifier: {}.", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

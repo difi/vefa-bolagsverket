@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 @Service
 public class IdentifierValidatorServiceImpl implements IdentifierValidatorService {
 
-    private static final Pattern pattern = Pattern.compile("(^(18|19|20)?([0-9]{10})$)");
+    private static final Pattern pattern = Pattern.compile("^(18|19|20)?([0-9]{10})([0-9]{3})?$");
     private static final int[] weights = {2, 1, 2, 1, 2, 1, 2, 1, 2, 1};
 
     @Override
@@ -25,19 +25,29 @@ public class IdentifierValidatorServiceImpl implements IdentifierValidatorServic
             return false;
         }
         log.info("Performing Luhn algorithm validation.");
-        String idWithoutCenturyPrefix = 12 == idWithoutDashes.length()
-                ? idWithoutDashes.substring(2)
-                : idWithoutDashes;
-        boolean luhnResult = performLuhnAlgorithmValidation(idWithoutCenturyPrefix);
+        String idToCheckAgainstLuhnAlgorithm;
+        switch (idWithoutDashes.length()) {
+            case 15:
+                idToCheckAgainstLuhnAlgorithm = idWithoutDashes.substring(2, 12);
+                break;
+            case 12:
+                idToCheckAgainstLuhnAlgorithm = idWithoutDashes.substring(2);
+                break;
+            default:
+                idToCheckAgainstLuhnAlgorithm = idWithoutDashes;
+        }
+
+        boolean luhnResult = performLuhnAlgorithmValidation(idToCheckAgainstLuhnAlgorithm);
         log.info("Validation result: {}", luhnResult);
 
         return luhnResult;
     }
 
-    private boolean performLuhnAlgorithmValidation(String idWithoutDashes) {
+    private boolean performLuhnAlgorithmValidation(String identifier) {
+        log.info("Validating '{}' against the Luhn algorithm.", identifier);
         int sum = 0;
         for (int i = 0; i < 10; i++) {
-            int t = Integer.valueOf(idWithoutDashes.substring(i, i + 1)) * weights[i];
+            int t = Integer.valueOf(identifier.substring(i, i + 1)) * weights[i];
             sum += t > 9 ? t - 9 : t;
         }
 

@@ -49,4 +49,14 @@ public class IdentifierIdentifierValidatorServiceImplTest {
     public void validate_ValidIdentifierContainingSekelPrefix_ShouldSucceed() {
         assertTrue(target.validate("194910017930"));
     }
+
+    @Test
+    public void validate_SoleProprietorIdentifier_ShouldSucceed() {
+        assertTrue(target.validate("194712158031001"));
+    }
+
+    @Test
+    public void validate_TooLongIdentifier_ShouldFail() {
+        assertFalse(target.validate("1947121580310011"));
+    }
 }
