@@ -42,4 +42,4 @@ Type oppslag | HTTP-statuskode | Respons
 Registrert svensk aksjeselskaps-identifikator. | 200 | JSON: {"name":"Namnet på selskapet"} 
 Gyldig svensk aksjeselskaps-identifikator utan match i registeret. | 404 | - 
 Ugyldig svensk aksjeselskap-identifikator. | 400 | - 
-Registrert svensk enkeltmannsføretak. | 200 | JSON: {"name":"Namnet på selskapet"}
+Registrert svensk enkeltmannsføretak. | 200 | JSON: {"name":"Namnet på føretaket."}
