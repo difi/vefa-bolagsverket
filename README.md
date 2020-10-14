@@ -1,4 +1,4 @@
-# vefa-bolagsverket
+# eproc-bolagsverket
 **Introduksjon**
 
 REST-tenesta bolagsverket-client gjer oppslag mot XML-tenestene til Bolagsverket, som er beskrivne [HER](http://bolagsverket.se/be/sok/xml), nærmare bestemt produktet "Grundpaket" (versjon 2.00).
