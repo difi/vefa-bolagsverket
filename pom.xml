@@ -87,6 +87,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${project.parent.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -105,7 +106,6 @@
                                 <source>${basedir}/src/main/resources/wsdl</source>
                             </sources>
                             <packageName>no.difi.bolagsverket.xml</packageName>
-                            <generateDirectory>${project.build.directory}/generated-sources/xjc-wsdl</generateDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -121,19 +121,7 @@
                                 <source>${basedir}/src/main/resources/request/foretagsinformation</source>
                             </sources>
                             <packageName>no.difi.bolagsverket.request.schema</packageName>
-                            <generateDirectory>${project.build.directory}/generated-sources/xjc-request
-                            </generateDirectory>
                             <clearOutputDir>false</clearOutputDir>
-                            <args>
-                                <arg>-Xfluent-builder</arg>
-                            </args>
-                            <plugins>
-                                <plugin>
-                                    <groupId>net.codesup.util</groupId>
-                                    <artifactId>jaxb2-rich-contract-plugin</artifactId>
-                                    <version>1.17.0</version>
-                                </plugin>
-                            </plugins>
                         </configuration>
                     </execution>
                     <execution>
@@ -148,8 +136,6 @@
                                 <source>${basedir}/src/main/resources/response/foretagsinformation</source>
                             </sources>
                             <packageName>no.difi.bolagsverket.response.schema</packageName>
-                            <generateDirectory>${project.build.directory}/generated-sources/xjc-response
-                            </generateDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -164,7 +150,6 @@
                     <buildArgs>
                         <jarPath>target/${project.build.finalName}.jar</jarPath>>
                     </buildArgs>
-                    <skip>false</skip>
                 </configuration>
                 <executions>
                     <execution>
