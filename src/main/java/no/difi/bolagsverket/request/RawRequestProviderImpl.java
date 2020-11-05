@@ -56,28 +56,27 @@ class RawRequestProviderImpl implements RequestProvider {
     private Foretagsfraga getForetagsfraga(Identifier identifier) {
         InformationshuvudType header = getInformationshuvudType();
         Foretagsfraga.Produkt produkt = getProdukt(identifier);
-        return Foretagsfraga.builder()
-                .withInformationshuvud(header)
-                .withProdukt(produkt)
-                .withSchemaVersion(SCHEMA_VERSION)
-                .build();
+        Foretagsfraga foretagsfraga = new Foretagsfraga();
+        foretagsfraga.setInformationshuvud(header);
+        foretagsfraga.setProdukt(produkt);
+        foretagsfraga.setSchemaVersion(SCHEMA_VERSION);
+        return foretagsfraga;
     }
 
     private Foretagsfraga.Produkt getProdukt(Identifier identifier) {
         BigInteger century = null != identifier.getCentury()
                 ? new BigInteger(identifier.getCentury())
                 : null;
-        Foretagsfraga.Produkt.Sokbegrepp queryTerm = Foretagsfraga.Produkt.Sokbegrepp.builder()
-                .withForetagsidentitet(IdType.builder()
-                        .withSekel(century)
-                        .withOrganisationsnummer(identifier.getOrganizationNumber())
-                        .build())
-                .build();
-        return Foretagsfraga.Produkt.builder()
-                .withVersion(PRODUKT_VERSION)
-                .withNamn(PRODUKT_NAME)
-                .withSokbegrepp(queryTerm)
-                .build();
+        IdType idType = new IdType();
+        idType.setSekel(century);
+        idType.setOrganisationsnummer(identifier.getOrganizationNumber());
+        Foretagsfraga.Produkt.Sokbegrepp sokbegrepp = new Foretagsfraga.Produkt.Sokbegrepp();
+        sokbegrepp.setForetagsidentitet(idType);
+        Foretagsfraga.Produkt produkt = new Foretagsfraga.Produkt();
+        produkt.setVersion(PRODUKT_VERSION);
+        produkt.setNamn(PRODUKT_NAME);
+        produkt.getSokbegrepp().add(sokbegrepp);
+        return produkt;
     }
 
     private InformationshuvudType getInformationshuvudType() {
@@ -88,8 +87,10 @@ class RawRequestProviderImpl implements RequestProvider {
         } catch (DatatypeConfigurationException e) {
             log.error("Failed to set request time.", e);
         }
-        return null != requestTime
-                ? InformationshuvudType.builder().withMeddelandeDatumTid(requestTime).build()
-                : InformationshuvudType.builder().build();
+        InformationshuvudType informationshuvudType = new InformationshuvudType();
+        if (null != requestTime) {
+            informationshuvudType.setMeddelandeDatumTid(requestTime);
+        }
+        return informationshuvudType;
     }
 }
